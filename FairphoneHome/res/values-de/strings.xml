@@ -21,7 +21,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="application_name" msgid="8424725141379931883">"Fairphone OS"</string>
     <string name="home" msgid="5921706419368316758">"Startbildschirm"</string>
-    <string name="uid_name" msgid="3371120195364560632">"Android Core Apps"</string>
+    <string name="uid_name" msgid="3371120195364560632">"Android System-Apps"</string>
     <string name="folder_name" msgid="8551881338202938211"></string>
     <string name="chooser_wallpaper" msgid="6063168087625352235">"Hintergrund auswählen"</string>
     <string name="wallpaper_instructions" msgid="4215640646180727542">"Hintergrund festlegen"</string>
@@ -30,7 +30,7 @@
     <string name="widgets_tab_label" msgid="9145860100000983599">"Widgets"</string>
     <string name="long_press_widget_to_add" msgid="7395697462851217506">"Zum Hinzufügen Widget berühren und halten"</string>
     <string name="market" msgid="2652226429823445833">"Shop"</string>
-    <string name="external_drop_widget_error" msgid="2285187188524172774">"Element wurde nicht auf Startbildschirm abgelegt."</string>
+    <string name="external_drop_widget_error" msgid="2285187188524172774">"Element wurde nicht auf dem Startbildschirm abgelegt."</string>
     <string name="external_drop_widget_pick_title" msgid="7040647073452295370">"Widget zum Erstellen auswählen"</string>
     <string name="rename_folder_label" msgid="5646236631298452787">"Ordnername"</string>
     <string name="rename_folder_title" msgid="4544573104191526550">"Ordner umbenennen"</string>
@@ -114,7 +114,7 @@
     
     <!-- Fairphone -->
     <!-- Your Apps -->
-    <string name="your_apps">Your Apps</string>
+    <string name="your_apps">Ihre Apps</string>
     
     <string name="last_used_apps">Zuletzt benutzte Apps</string>
     <string name="last_used">Zuletzt benutzte</string>
@@ -122,7 +122,7 @@
     <string name="most_used">Meistbenutzte</string>
     <string name="no_apps_have_been_opened_yet">Noch keine Apps geöffnet? Fangen Sie einfach an, Ihr Handy zu benutzen und kommen Sie zu diesem Bildschirm zurück</string>
     <string name="reset">Zurücksetzen</string>
-    <string name="app_switcher_reset_message">Bist Du sicher?</string>
+    <string name="app_switcher_reset_message">Sind Sie sicher?</string>
     
     <!-- Settings -->
     <string name="energy_mood">Energy Mood im Sperr-Bildschirm aktivieren</string>
@@ -130,14 +130,14 @@
     
     
     <!-- Quick Access -->
-    <string name="quick_access">Quick Access</string>
+    <string name="quick_access">Schnellzugriff</string>
     <string name="edit">Bearbeiten</string>
     <string name="favourite_apps">Lieblings-Apps</string>
     <string name="drag_here_to_add">Ziehen Sie\nhier, um\nhinzuzufügen</string>
     <string name="drag_here_to_remove">Zum\nLöschen hierher\nbewegen</string>
     
     <!-- OOBE Texts -->
-	<string name="oobe_quick_access">Quick Access</string>
+	<string name="oobe_quick_access">Schnellzugriff</string>
 	<string name="oobe_select_language">Sprache\nauswählen</string>
 	<string name="oobe_setup_wifi">Setup\nWi-Fi</string>
 	<string name="oobe_intro_top">Willkommen! Sie halten ein Handy in Ihren Händen, bei dessen Herstellung soziale Werte an erster Stelle standen. Aber natürlich kann man damit auch telefonieren.</string>
@@ -174,7 +174,7 @@
     <string name="google_apps_installer_name">Google Apps-Installer</string>
 	<string name="google_apps_initial_title">Installieren Sie\ndie Google Apps</string>
 	<string name="google_apps_disclaimer_title">Installieren Sie die Google Apps</string>
-	<string name="google_apps_disclaimer_description">Für das vollkommene mobile Android- und Google-Erlebnis, wie z. B. Google Play store, benötigt Ihr Handy einen zusätzlichen Inhalt und eine Extra-Software. Leider können wir weder diesen Inhalt vorinstallieren noch können wir ihn direkt zur Verfügung stellen, da Fairphone noch keine Lizenz für diesen besitzt. Wir verhandeln aber im Moment mit dem Inhaltseigentümer, um diese Lizenz zu erhalten.\nTippen Sie unten auf "Ich akzeptiere", um diesen Inhalt von einer externen sicheren Quelle herunterzuladen. Sie installieren diesen Inhalt auf Ihre eigene Verantwortung.\nWenn Sie nicht zustimmen, wird Ihr Handy natürlich immer noch mit den grundlegenden Android-Apps arbeiten, aber Sie werden einige Dienste von Google nicht durchführen können.</string>
+	<string name="google_apps_disclaimer_description">Für das vollkommene mobile Android- und Google-Erlebnis, wie z. B. Google Play store, benötigt Ihr Handy zusätzlichen Inhalt und eine Extra-Software. Leider können wir weder diesen Inhalt vorinstallieren noch können wir ihn direkt zur Verfügung stellen, da Fairphone noch keine Lizenz für diesen besitzt. Wir verhandeln aber im Moment mit dem Inhaltseigentümer, um diese Lizenz zu erhalten.\nTippen Sie unten auf "Ich akzeptiere", um diesen Inhalt von einer externen sicheren Quelle herunterzuladen. Sie installieren diesen Inhalt auf Ihre eigene Verantwortung.\nWenn Sie nicht zustimmen, wird Ihr Handy natürlich immer noch mit den grundlegenden Android-Apps arbeiten, aber Sie werden einige Dienste von Google nicht durchführen können.</string>
 	<string name="google_apps_disclaimer_agree">Ich akzeptiere</string>
 	<string name="google_apps_denied_permissions_title">Berechtigungen verweigert</string>
 	<string name="google_apps_denied_permissions_description">Fairphone Launcher konnte nicht die erforderlichen Berechtigungen erhalten, um die Google Apps zu installieren. Wenn Sie VERWEIGERN ausgewählt haben, starten Sie bitte Ihren Installer neu und ERLAUBEN Sie die Berechtigungen.</string>
