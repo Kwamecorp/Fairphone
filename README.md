@@ -55,4 +55,7 @@ The user shall be able to see the time he has been on Piece of Mind. This widget
 The lockscreen is what the user sees when he turns on the device. This is the layer of protection between the phone and unwanted usage of the device.
 The Fairphone project has conceived a Fairphone lockscreen that will be based on the Android 4.2.2 one, allowing lock screen widgets and allowing the user to select a mood changer that will depict the battery level as a set of background colors that will replace the background and give the device a very clean look.
 
+###Fairphone Updater overview
+
+The Fairphone updater is a built in updater service that provides functionality for OTA - Over The Air updates of the Fairphone OS.
 
