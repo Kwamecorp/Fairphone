@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/appSwitcherMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="62dp" >
+
+        <ImageButton
+            android:id="@+id/buttonLauncher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#00ffffff"
+            android:src="@drawable/app_switcher_icon_all_apps" />
+
+        <Button
+            android:id="@+id/buttonReset"
+            style="@style/AppSwitcherButtonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6.6dp"
+            android:layout_marginTop="13.5dp"
+            android:text="@string/reset"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonResetDisabled"
+            style="@style/AppSwitcherButtonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6.6dp"
+            android:layout_marginTop="13.5dp"
+            android:enabled="false"
+            android:text="@string/reset"
+            android:visibility="gone" />
+    </RelativeLayout>
+	
+    <LinearLayout
+        android:id="@+id/appSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6.6dp"
+            android:layout_marginTop="6.6dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lastUsedAppsOOBETitle"
+                style="@style/AppSwitcherOOBEText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/last_used_apps"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/lastUsedAppsTitle"
+                style="@style/SubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="13dp"
+                android:gravity="center_horizontal"
+                android:text="@string/last_used" />
+
+            <LinearLayout
+                android:id="@+id/lastUsedApps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="6.6dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/app_switcher_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6.6dp"
+            android:layout_marginRight="6.6dp"
+            android:layout_marginTop="6.6dp"
+            android:background="@drawable/app_switcher_list_background"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/mostUsedAppsOOBETitle"
+                style="@style/AppSwitcherOOBEText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/most_used_apps"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mostUsedAppsOOBEDescription"
+                style="@style/AppSwitcherOOBEDescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/no_apps_have_been_opened_yet"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mostUsedAppsTitle"
+                style="@style/SubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:text="@string/most_used" />
+
+            <LinearLayout
+                android:id="@+id/mostUsedApps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

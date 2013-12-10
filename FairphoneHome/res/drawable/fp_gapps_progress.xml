@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@color/google_progressbar_grey" />
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip android:drawable="@color/google_blue" />
+    </item>
+    <item android:id="@android:id/progress">
+        <clip android:drawable="@color/google_blue" />
+    </item>
+
+</layer-list>

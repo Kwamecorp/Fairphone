@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updaterService">Service de mise à jour</string>
+    <string name="currentVersion">Version actuelle</string>
+    <string name="newVersion">Nouvelle version</string>
+    <string name="installVersion">Installer la nouvelle version</string>
+    <string name="rebootDevice">Redémarrer l\'appareil</string>
+    <string name="messageReadyToInstall">Une nouvelle version est prête à installer&#8230;</string>
+    <string name="invalidDownloadMessage">Fichier téléchargé invalide</string>
+    <string name="fairphoneUpdateMessage">Nouvelle mise à jour de Fairphone disponible</string>
+    <string name="downloadMessage">Téléchargement de mise à jour, svp patienter&#8230;</string>
+    <string name="downloadUpdateTitle">Nouvelle mise à jour de Fairphones</string>
+    <string name="wifiDiscaimerTitle">Fonction Wi-Fi désactivée</string>
+	<string name="wifiDiscaimerMessage">Le fichier que vous essayez de télécharger est trop volumineux pour les connexions mobiles (~200 MB). Veuillez activer la connexion Wi-Fi et essayer à nouveau.</string>  
+</resources>

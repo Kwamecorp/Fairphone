@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+* Copyright (C) 2008 The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="application_name" msgid="8424725141379931883">"Fairphone OS"</string>
+    <string name="home" msgid="5921706419368316758">"Startpagina"</string>
+    <string name="uid_name" msgid="3371120195364560632">"Android-kerntoepassingen"</string>
+    <string name="folder_name" msgid="8551881338202938211"></string>
+    <string name="chooser_wallpaper" msgid="6063168087625352235">"Achtergrond kiezen van"</string>
+    <string name="wallpaper_instructions" msgid="4215640646180727542">"Achtergrond instellen"</string>
+    <string name="pick_wallpaper" msgid="5630222540525626723">"Achtergronden"</string>
+    <string name="activity_not_found" msgid="217823393239365967">"App is niet geïnstalleerd."</string>
+    <string name="widgets_tab_label" msgid="9145860100000983599">"Widgets"</string>
+    <string name="long_press_widget_to_add" msgid="7395697462851217506">"Blijf aanraken om een widget toe te voegen"</string>
+    <string name="market" msgid="2652226429823445833">"Winkel"</string>
+    <string name="external_drop_widget_error" msgid="2285187188524172774">"Kan item niet neerzetten in dit startscherm."</string>
+    <string name="external_drop_widget_pick_title" msgid="7040647073452295370">"Widget selecteren om te maken"</string>
+    <string name="rename_folder_label" msgid="5646236631298452787">"Mapnaam"</string>
+    <string name="rename_folder_title" msgid="4544573104191526550">"Naam van map wijzigen"</string>
+    <string name="rename_action" msgid="6016003384693240896">"OK"</string>
+    <string name="cancel_action" msgid="3811860427489435048">"Annuleren"</string>
+    <string name="menu_item_add_item" msgid="6233177331075781114">"Toevoegen aan startpagina"</string>
+    <string name="group_applications" msgid="2103752818818161976">"Apps"</string>
+    <string name="group_shortcuts" msgid="9133529424900391877">"Sneltoetsen"</string>
+    <string name="group_widgets" msgid="6704978494073105844">"Widgets"</string>
+    <string name="group_wallpapers" msgid="1568191644272224858">"Achtergronden"</string>
+    <string name="completely_out_of_space" msgid="1759078539443491182">"Er is geen ruimte meer op uw startschermen."</string>
+    <string name="out_of_space" msgid="8365249326091984698">"Er is geen ruimte meer op dit startscherm."</string>
+    <string name="hotseat_out_of_space" msgid="6304886797358479361">"Er is geen ruimte meer op de hotseat."</string>
+    <string name="invalid_hotseat_item" msgid="6545340627805449250">"Deze widget is te groot voor de hotseat."</string>
+    <string name="shortcut_installed" msgid="7071557296331322355">"Snelkoppeling \'<xliff:g id="NAME">%s</xliff:g>\' is gemaakt."</string>
+    <string name="shortcut_uninstalled" msgid="2129499669449749995">"Snelkoppeling \'<xliff:g id="NAME">%s</xliff:g>\' is verwijderd."</string>
+    <string name="shortcut_duplicate" msgid="4757756326465060694">"Snelkoppeling \'<xliff:g id="NAME">%s</xliff:g>\' bestaat al."</string>
+    <string name="title_select_shortcut" msgid="1873670208166882222">"Snelkoppeling selecteren"</string>
+    <string name="title_select_application" msgid="1793455815754848652">"App selecteren"</string>
+    <string name="all_apps_button_label" msgid="2578400570124163469">"Apps"</string>
+    <string name="all_apps_home_button_label" msgid="1022222300329398558">"Startpagina"</string>
+    <string name="delete_zone_label_workspace" msgid="7153615831493049150">"Verwijderen"</string>
+    <string name="delete_zone_label_all_apps" msgid="6664588234817475108">"Verwijderen"</string>
+    <string name="delete_target_label" msgid="665300185123139530">"Verwijderen"</string>
+    <string name="delete_target_uninstall_label" msgid="748894921183769150">"Installatie ongedaan maken"</string>
+    <string name="info_target_label" msgid="4019495079517426980">"App-info"</string>
+    <string name="accessibility_search_button" msgid="816822994629942611">"Zoeken"</string>
+    <string name="accessibility_voice_search_button" msgid="3938249215065842475">"Gesproken zoekopdrachten"</string>
+    <string name="accessibility_all_apps_button" msgid="8803738611398979849">"Apps"</string>
+    <string name="accessibility_delete_button" msgid="3628162007991023603">"Verwijderen"</string>
+    <string name="delete_zone_label_all_apps_system_app" msgid="3683920959591819044">"Update verwijderen"</string>
+    <string name="menu_add" msgid="3065046628354640854">"Toevoegen"</string>
+    <string name="menu_manage_apps" msgid="2308685199463588895">"Apps beheren"</string>
+    <string name="menu_wallpaper" msgid="5837429080911269832">"Achtergrond"</string>
+    <string name="menu_search" msgid="4826514464423239041">"Zoeken"</string>
+    <string name="menu_notifications" msgid="6424587053194766192">"Meldingen"</string>
+    <string name="menu_settings" msgid="3946232973327980394">"Systeeminstellingen"</string>
+    <string name="menu_help" msgid="4901160661634590633">"Help"</string>
+    <string name="cab_menu_delete_app" msgid="4089398025537640349">"App verwijderen"</string>
+    <string name="cab_menu_app_info" msgid="914548323652698884">"App-details"</string>
+    <string name="cab_app_selection_text" msgid="6378522164293415735">"1 app geselecteerd"</string>
+    <string name="cab_widget_selection_text" msgid="962527270506951955">"1 widget geselecteerd"</string>
+    <string name="cab_folder_selection_text" msgid="8916111874189565067">"1 map geselecteerd"</string>
+    <string name="cab_shortcut_selection_text" msgid="8115847384500412878">"1 snelkoppeling geselecteerd"</string>
+    <string name="permlab_install_shortcut" msgid="1201690825493376489">"snelkoppelingen installeren"</string>
+    <string name="permdesc_install_shortcut" msgid="8634424803272077038">"Een app toestaan snelkoppelingen toe te voegen zonder tussenkomst van de gebruiker."</string>
+    <string name="permlab_uninstall_shortcut" msgid="7696645932555926449">"snelkoppelingen verwijderen"</string>
+    <string name="permdesc_uninstall_shortcut" msgid="274355570620220977">"Toestaan dat de app snelkoppelingen verwijdert zonder tussenkomst van de gebruiker."</string>
+    <string name="permlab_read_settings" msgid="3452408290738106747">"instellingen en snelkoppelingen voor de startpagina lezen"</string>
+    <string name="permdesc_read_settings" msgid="5788109303585403679">"Toestaan dat de app de instellingen en snelkoppelingen op de startpagina leest."</string>
+    <string name="permlab_write_settings" msgid="1360567537236705628">"instellingen en snelkoppelingen voor de startpagina schrijven"</string>
+    <string name="permdesc_write_settings" msgid="8530105489115785531">"Toestaan dat de app de instellingen en snelkoppelingen op de startpagina wijzigt."</string>
+    <string name="gadget_error_text" msgid="8359351016167075858">"Probleem bij het laden van widget"</string>
+    <string name="uninstall_system_app_text" msgid="6429814133777046491">"Dit is een systeemapp die niet kan worden verwijderd."</string>
+    <string name="dream_name" msgid="2847171357608437154">"Rocket Launcher"</string>
+    <string name="folder_hint_text" msgid="8633351560105748141">"Naamloze map"</string>
+    <string name="workspace_description_format" msgid="2968608205939373034">"Startscherm %1$d"</string>
+    <string name="default_scroll_format" msgid="4057140866420001240">"Pagina %1$d van %2$d"</string>
+    <string name="workspace_scroll_format" msgid="1704767047951143301">"Startscherm %1$d van %2$d"</string>
+    <string name="apps_customize_apps_scroll_format" msgid="5494241912377704885">"App-pagina %1$d van %2$d"</string>
+    <string name="apps_customize_widgets_scroll_format" msgid="5383009742241717437">"Widgetpagina %1$d van %2$d"</string>
+    <string name="workspace_cling_title" msgid="738396473989890567">"Doe maar alsof u thuis bent"</string>
+    <string name="workspace_cling_move_item" msgid="791013895761065070">"U kunt hier uw favoriete apps plaatsen."</string>
+    <string name="workspace_cling_open_all_apps" msgid="2459977609848572588">"Als u al uw apps wilt bekijken, raakt u de cirkel aan."</string>
+    <string name="all_apps_cling_title" msgid="2559734712581447107">"Enkele apps selecteren"</string>
+    <string name="all_apps_cling_add_item" msgid="5665035103260318891">"Als u een app wilt toevoegen aan het startscherm, blijft u de app aanraken."</string>
+    <string name="folder_cling_title" msgid="4308949882377840953">"Uw apps ordenen met mappen"</string>
+    <string name="folder_cling_move_item" msgid="270598675060435169">"Als u een app wilt verplaatsen, blijft u de app aanraken."</string>
+    <string name="folder_cling_create_folder" msgid="8352867485656129478">"Als u een nieuwe map op het startscherm wilt maken, stapelt u een app boven op een andere app."</string>
+    <string name="cling_dismiss" msgid="2780907108735868381">"OK"</string>
+    <string name="folder_opened" msgid="1262064100943801533">"Map geopend, <xliff:g id="WIDTH">%1$d</xliff:g> bij <xliff:g id="HEIGHT">%2$d</xliff:g>"</string>
+    <string name="folder_tap_to_close" msgid="1335478160661137579">"Raak dit aan om de map te sluiten"</string>
+    <string name="folder_tap_to_rename" msgid="5201612989905472442">"Raak dit aan om naam wijzigen op te slaan"</string>
+    <string name="folder_closed" msgid="3130534551370511932">"Map gesloten"</string>
+    <string name="folder_renamed" msgid="7951233572858053642">"De naam van de map is gewijzigd in <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="folder_name_format" msgid="3051680259794759037">"Map: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="custom_workspace_cling_title_1" msgid="1433009175359948587"></string>
+    <string name="custom_workspace_cling_description_1" msgid="6875529190849858047"></string>
+    <string name="custom_workspace_cling_title_2" msgid="5516006164661020362"></string>
+    <string name="custom_workspace_cling_description_2" msgid="2758258454975288377"></string>
+    
+    <!-- Fairphone -->
+    <!-- Your Apps -->
+    <string name="your_apps">Your Apps</string>
+    
+    <string name="last_used_apps">Laatst gebruikte applicaties</string>
+    <string name="last_used">Laatst gebruikt</string>
+    <string name="most_used_apps">Meeste gebruikte applicaties</string>
+    <string name="most_used">Meest gebruikt</string>
+    <string name="no_apps_have_been_opened_yet">Nog geen applicaties geopend? Begin met het gebruiken van je telefoon en kom terug naar dit scherm</string>
+    <string name="reset">Reset</string>
+    <string name="app_switcher_reset_message">Weet je het zeker?</string>
+    
+    <!-- Settings -->
+    <string name="energy_mood">Energie Mood op slot scherm</string>
+    <string name="energy_mood_summary">Weergave batterij niveau als achtergrondkleur op slot scherm</string>
+    
+    <!-- Quick Access -->
+    <string name="quick_access">Quick Access</string>
+    <string name="edit">Bewerken</string>
+    <string name="favourite_apps">Favoriete applicaties</string>
+    <string name="drag_here_to_add">Sleep hier\nom toe\nte voegen</string>
+    <string name="drag_here_to_remove">Sleep hierheen\nom te\nverwijderen</string>
+    
+    <!-- OOBE Texts -->
+	<string name="oobe_quick_access">Quick Access</string>
+	<string name="oobe_select_language">Selecteer\nTaal</string>
+	<string name="oobe_setup_wifi">Setup\nWi-Fi</string>
+	<string name="oobe_intro_top">Welkom! In je handen ligt een telefoon geproduceerd met sociale waardes op de eerste plaats. En ja, je kan er ook nog mee bellen!</string>
+	<string name="oobe_intro_bottom">We laten je zien hoe het werkt</string>
+	
+	<string name="oobe_edge_swipe_title">Veeg van links</string>
+	<string name="oobe_edge_swipe_text">of rechts om de applicatie te starten</string>
+	
+	<string name="oobe_open_app_title">Tik op de juiste</string>
+	<string name="oobe_open_app_text">applicatie om te openen</string>
+	
+	<string name="oobe_edit_drag_intro">De applicaties zijn versleepbaar, dus gemakkelijk te verplaatsen</string>
+	
+	<string name="oobe_edit_drag_add_title">Versleep naar</string>
+	<string name="oobe_edit_drag_add_text">de rechterzijde om toe te voegen aan favorieten</string>
+	
+	<string name="oobe_edit_drag_remove_title">Versleep naar</string>
+	<string name="oobe_edit_drag_remove_text">de linkerzijde om uit favorieten te verwijderen</string>
+	
+	<string name="oobe_edit_drag_trade_title">Versleep de favorieten</string>
+	<string name="oobe_edit_drag_trade_text">om van positie te veranderen</string>
+	
+	<string name="oobe_your_apps_intro">Al je meest gebruikte applicaties op één plaats</string>
+	<string name="oobe_your_apps_learning">Je telefoon leert van jouw gebruik en onthoudt de meest gebruikte applicaties</string>
+	<string name="oobe_your_apps_last_ones">Zie ook de applicaties die je als laatst hebt gebruikt</string>
+	<string name="oobe_your_apps_start_using">Begin met het gebruiken van je telefoon, de applicaties wachten hier op je</string>
+	
+	<string name="oobe_start">Start</string>
+	<string name="oobe_back">Terug</string>
+	<string name="oobe_skip">Overslaan</string>
+	<string name="oobe_next">Volgende</string>
+	<string name="oobe_done">Sluiten</string>
+	
+	<!-- Google Apps Install Widget -->
+    <string name="google_apps_installer_name">Google Apps Installer</string>
+	<string name="google_apps_initial_title">Installeer\nGoogle Apps</string>
+	<string name="google_apps_disclaimer_title">Installeer Google Apps</string>
+	<string name="google_apps_disclaimer_description">Voor de volledige Android en Google mobile toepassingen, zoals de Google Play store, heeft je telefoon extra inhoud en software nodig. Omdat Fairphone nog geen licentie heeft kunnen we die inhoud jammer genoeg niet van tevoren installeren en we kunnen het ook niet rechtstreeks ter beschikking stellen. We zijn hierover in overleg met de eigenaar van de inhoud.\nDruk op “Accepteren” hieronder om de inhoud te downloaden van een externe, veilige bron. Het installeren van deze inhoud is voor eigen verantwoordelijkheid.\nAls je hier niet mee akkoord gaat, zal je telefoon natuurlijk nog werken met de basis apps voor Android, maar je zult een aantal diensten van Google niet kunnen gebruiken.</string>
+	<string name="google_apps_disclaimer_agree">Accepteren</string>
+	<string name="google_apps_denied_permissions_title">Geen toestemming</string>
+	<string name="google_apps_denied_permissions_description">Fairphone OS heeft geen toestemming voor het installeren van Google Apps. Als je NEGEREN kiest, start dan de installer opnieuw en geef TOESTEMMING.</string>
+	<string name="google_apps_reboot_failed_title">Herstarten mislukt</string>
+	<string name="google_apps_reboot_failed_description">Google Apps zijn geïnstalleerd. Herstart van het apparaat niet gelukt, a.u.b. handmatige herstarten.</string>
+	<string name="google_apps_download_title">Bezig met de download van\nGoogle Apps</string>
+	<string name="google_apps_unzip_title">Bezig met het uitpakken van\nGoogle Apps</string>
+	<string name="google_apps_install_title">Bezig met het installeren van\nGoogle Apps</string>
+	<string name="google_apps_reboot_title">Apparaat aan het herstarten</string>
+	<string name="google_apps_permissions_description">Fairphone OS vraagt nu om toegang als Superuser. We verzekeren je dat het helemaal veilig is. Kies TOESTAAN als daarom wordt gevraagd.</string>
+	<string name="google_apps_permissions_title">Toegangsrechten tot het systeem</string>
+	<string name="google_apps_reboot_description">Het systeem moet opnieuw worden gestart om de installatie af te ronden.\nVolg na het herstarten de stappen voor het opzetten van Google Apps.</string>
+	<string name="google_apps_uninstall_title">Google Apps geïnstalleerd</string>
+	<string name="google_apps_uninstall_description">Deze installer\nverwijderen</string>
+	<string name="google_apps_failed_download_title">Downloaden mislukt</string>
+	<string name="google_apps_failed_download_description">De gedownloade bestanden zijn corrupt. Opnieuw proberen?</string>
+	<string name="google_apps_download_error">Fout bij het downloaden van de bestanden. Probeer het opnieuw.</string>
+	<string name="google_apps_connection_title">Wi-Fi niet beschikbaar</string>
+	<string name="google_apps_connection_description">Het bestand dat je probeert te downloaden is te groot voor mobiele verbindingen (~100MB). Breng de Wi-Fi verbinding tot stand en probeer het opnieuw.</string>
+	
+</resources>

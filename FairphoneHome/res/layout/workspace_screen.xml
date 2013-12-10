@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!--
+FPNOTE : default values 
+android:paddingLeft="@dimen/cell_layout_left_padding"
+    android:paddingRight="@dimen/cell_layout_right_padding"
+    android:paddingTop="@dimen/cell_layout_top_padding"
+    android:paddingBottom="@dimen/cell_layout_bottom_padding"
+-->
+
+<org.fairphone.launcher.CellLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:launcher="http://schemas.android.com/apk/res/org.fairphone.launcher"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#33002200"
+    android:hapticFeedbackEnabled="false"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    launcher:cellHeight="@dimen/workspace_cell_height"
+    launcher:cellWidth="@dimen/workspace_cell_width"
+    launcher:heightGap="@dimen/workspace_height_gap"
+    launcher:maxGap="@dimen/workspace_max_gap"
+    launcher:widthGap="@dimen/workspace_width_gap" />

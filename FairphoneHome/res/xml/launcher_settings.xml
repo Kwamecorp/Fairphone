@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="pref_edge_swipe_settings"
+        android:title="@string/pref_edge_swipe_title" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_edge_swipe_safe_zone"
+            android:summary="@string/pref_edge_swipe_safe_zone_summ"
+            android:title="@string/pref_edge_swipe_safe_zone" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_mood_changer_settings"
+        android:title="@string/pref_mood_changer_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_show_mood_changer_on_lock_screen"
+            android:summary="@string/pref_show_mood_changer_on_lockscreen_summary"
+            android:title="@string/pref_show_mood_changer_on_lockscreen" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_show_mood_changer_on_home_screen"
+            android:summary="@string/pref_show_mood_changer_on_homescreen_summary"
+            android:title="@string/pref_show_mood_changer_on_homescreen" />
+		<CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_is_mood_changer_solid"
+            android:summary="@string/pref_is_mood_changer_solid_summary"
+            android:title="@string/pref_is_mood_changer_solid" />        
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

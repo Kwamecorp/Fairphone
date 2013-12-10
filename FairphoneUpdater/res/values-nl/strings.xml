@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updaterService">Updater Service</string>
+    <string name="currentVersion">Huidige Versie</string>
+    <string name="newVersion">Nieuwe Versie</string>   
+    <string name="installVersion">Installeer nieuwe versie</string>
+    <string name="rebootDevice">Herstart apparaat</string>   
+    <string name="messageReadyToInstall">Nieuwe versie staat klaar om te installeren&#8230;</string>
+    <string name="invalidDownloadMessage">Gedownloade bestand is ongeldig</string>
+    <string name="fairphoneUpdateMessage">Nieuwe Fairphone update beschikbaar</string>
+    <string name="downloadMessage">Downloaden update, een moment geduld&#8230;</string>
+    <string name="downloadUpdateTitle">Nieuwe Fairphone update</string>
+    <string name="wifiDiscaimerTitle">Wi-Fi niet beschikbaar</string>
+	<string name="wifiDiscaimerMessage">Het bestand dat je probeert te downloaden is te groot voor mobiele verbindingen (~200MB). Breng de Wi-Fi verbinding tot stand en probeer het opnieuw.</string>  
+</resources>

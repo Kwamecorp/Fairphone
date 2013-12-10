@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/googleAppsIntallerMain"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <FrameLayout
+        android:id="@+id/installGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+
+        <ImageButton
+            android:id="@+id/installButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fp_gapps_widget_install" />
+
+        <TextView
+            android:id="@+id/installText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="@string/google_apps_initial_title"
+            android:textColor="@color/google_blue"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/popupDisclaimerGroup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fp_gapps_alert_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:text="@string/google_apps_disclaimer_title"
+            android:textColor="@color/google_blue"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true" 
+            android:textSize="18.5sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:padding="15dp"
+            android:text="@string/google_apps_disclaimer_description"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#727578" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43.5dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/disclaimerCancelButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/cancel"
+                android:textSize="12.5sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#727578" />
+
+            <Button
+                android:id="@+id/disclaimerOkButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/ok"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/popupFailedDownloadGroup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fp_gapps_alert_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:text="@string/google_apps_failed_download_title"
+            android:textColor="@color/google_blue"
+            android:textSize="18.5sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:padding="15dp"
+            android:text="@string/google_apps_failed_download_description"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#727578" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43.5dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/failedDownloadCancelButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/cancel"
+                android:textSize="12.5sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#727578" />
+
+            <Button
+                android:id="@+id/failedDownloadOkButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/ok"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popupProgressGroup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fp_gapps_alert_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/progressDialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:textColor="@color/google_blue"
+            android:textSize="18.5sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="35dp"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:padding="0dp"
+            android:progressDrawable="@drawable/fp_gapps_progress" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popupRebootGroup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fp_gapps_alert_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/rebootDialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:text="@string/google_apps_reboot_title"
+            android:textColor="@color/google_blue"
+            android:textSize="18.5sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:padding="15dp"
+            android:text="@string/google_apps_reboot_description"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#727578" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43.5dp"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+            
+            <Button
+                android:id="@+id/rebootOkButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/ok"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/popupPermissionsGroup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fp_gapps_alert_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/permissionsDialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:text="@string/google_apps_permissions_title"
+            android:textColor="@color/google_blue"
+            android:textSize="18.5sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:padding="15dp"
+            android:text="@string/google_apps_permissions_description"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#727578" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43.5dp"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Button
+                android:id="@+id/permissionsOkButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fp_gaaps_alert_button"
+                android:text="@android:string/ok"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/uninstallGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+
+        <ImageButton
+            android:id="@+id/uninstallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fp_gapps_widget_uninstall" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/uninstallTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/google_apps_uninstall_title"
+                android:textColor="#c8c8c8"
+                android:textSize="13.3dp" />
+
+            <TextView
+                android:id="@+id/uninstallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/google_apps_uninstall_description"
+                android:textColor="#c8c8c8"
+                android:textSize="18.5sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

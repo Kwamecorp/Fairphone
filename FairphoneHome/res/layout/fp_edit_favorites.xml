@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <LinearLayout
+        android:id="@+id/editMenuMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <!-- android:background="#CC000000" -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:paddingLeft="33dp" >
+
+            <TextView
+                android:id="@+id/mainTitle"
+                style="@style/SecondaryMainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/edit" />
+
+            <TextView
+                style="@style/IconText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainTitle"
+                android:layout_marginLeft="1dp"
+                android:text="@string/favourite_apps"
+                android:textAllCaps="true" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/allAppsGroup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6.6dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_menu_list_background"
+                android:orientation="vertical" >
+
+                <org.fairphone.launcher.edgeswipe.ui.EditFavoritesGridView
+                    android:id="@+id/allAppsGridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="13dp"
+                    android:clipToPadding="false"
+                    android:horizontalSpacing="13dp"
+                    android:listSelector="@color/transparent"
+                    android:numColumns="2"
+                    android:overScrollMode="never"
+                    android:paddingTop="20dp"
+                    android:scrollbars="none"
+                    android:verticalSpacing="15dp" />
+
+                <!--
+                 <GridView
+                android:id="@+id/allAppsGridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:clipToPadding="false"
+                android:horizontalSpacing="13dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="2"
+                android:overScrollMode="never"
+                android:paddingTop="20dp"
+                android:scrollbars="none"
+                android:verticalSpacing="15dp" />
+                -->
+
+                <TextView
+                    android:id="@+id/allAppsTextView"
+                    style="@style/IconText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="6dp"
+                    android:drawableTop="@drawable/edit_menu_icon_remove"
+                    android:lines="3"
+                    android:text="@string/drag_here_to_remove"
+                    android:textAllCaps="true"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@drawable/edit_menu_list_shadow_top" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/edit_menu_list_shadow_bottom" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="7.3dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/edit_menu_list_separator" />
+
+            <LinearLayout
+                android:layout_width="113dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6.6dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/favouriteGroup1"
+                    android:layout_width="103dp"
+                    android:layout_height="103dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/edit_menu_circle_faded" >
+
+                    <TextView
+                        android:id="@+id/favouriteRing1"
+                        style="@style/MainText"
+                        android:layout_width="103dp"
+                        android:layout_height="103dp"
+                        android:background="@drawable/edit_menu_circle"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/drag_here_to_add"
+                        android:textAllCaps="true"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/favouriteText1"
+                        style="@style/IconText"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="5dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/favouriteGroup2"
+                    android:layout_width="103dp"
+                    android:layout_height="103dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/edit_menu_circle_faded" >
+
+                    <TextView
+                        android:id="@+id/favouriteRing2"
+                        style="@style/MainText"
+                        android:layout_width="103dp"
+                        android:layout_height="103dp"
+                        android:background="@drawable/edit_menu_circle"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/drag_here_to_add"
+                        android:textAllCaps="true"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/favouriteText2"
+                        style="@style/IconText"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="5dp" />
+                </RelativeLayout>
+
+                <!-- ALL APPS BUTTONS -->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="30dp"
+                    android:src="@drawable/edit_menu_all_apps_faded" />
+
+                <RelativeLayout
+                    android:id="@+id/favouriteGroup3"
+                    android:layout_width="103dp"
+                    android:layout_height="103dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/edit_menu_circle_faded" >
+
+                    <TextView
+                        android:id="@+id/favouriteRing3"
+                        style="@style/MainText"
+                        android:layout_width="103dp"
+                        android:layout_height="103dp"
+                        android:background="@drawable/edit_menu_circle"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/drag_here_to_add"
+                        android:textAllCaps="true"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/favouriteText3"
+                        style="@style/IconText"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="5dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/favouriteGroup4"
+                    android:layout_width="103dp"
+                    android:layout_height="103dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/edit_menu_circle_faded" >
+
+                    <TextView
+                        android:id="@+id/favouriteRing4"
+                        style="@style/MainText"
+                        android:layout_width="103dp"
+                        android:layout_height="103dp"
+                        android:background="@drawable/edit_menu_circle"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/drag_here_to_add"
+                        android:textAllCaps="true"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/favouriteText4"
+                        style="@style/IconText"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="5dp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

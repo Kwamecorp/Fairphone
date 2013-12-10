@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="widget_enjoy_some_peace">Disfruta de un poco de paz</string>
+    <string name="at">En</string>
+    <string name="peace">Paz</string>
+    
+    <string name="help_string_1">A medida que nuestras vidas están más conectadas, aumenta nuestra dependencia de los móviles\n\nTe gustaría sentirte desconectado, aunque fuera sólo por un momento?</string>
+    <string name="help_string_2">Tu teléfono se quedará en silencio y se desconectará del mundo: sin e-mail, sin redes sociales, sin mensajes y sin llamadas</string>
+    <string name="help_string_3">Decide cuánto tiempo te gustaría desconectarte. Hasta 3 horas!\n\nMientras, puedes seguir jugando, leyendo o usando aplicaciones conexión</string>
+    
+    <string name="enjoy">Disfruta</string>
+    <string name="some">poco</string>
+    <string name="um">un</string>
+    <string name="to_m">de</string>    
+    <string name="to_h">de</string>
+    <string name="hour_separator">h</string>
+    
+    <string name="peace_on_notification">En paz</string>
+    <string name="peace_off_notification">Peace of Mind está desconectado</string>
+    
+</resources>

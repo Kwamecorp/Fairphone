@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/recentButton"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:background="@drawable/button_last_used_app" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@android:id/background"
+            android:layout_width="@dimen/app_icon_size"
+            android:layout_height="@dimen/app_icon_size"
+            android:clickable="false" />
+
+        <TextView
+            android:id="@android:id/text1"
+            style="@style/IconText"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:clickable="false"
+            android:includeFontPadding="false"
+            android:lines="2" />
+    </LinearLayout>
+
+</FrameLayout>

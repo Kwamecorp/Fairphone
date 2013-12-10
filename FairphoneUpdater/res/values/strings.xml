@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fairphone Updater</string>
+    <string name="downloadUrl">http://www.fairphone.com/ota/latest.zip</string>
+    <!-- <string name="downloadUrl">http://www.kwamecorp.com/dev/latest.zip</string>  -->
+    <string name="versionFilename">latest</string>
+    <string name="versionFilename_zip">.zip</string>
+	<string name="versionFilename_xml">.xml</string>
+	<string name="versionFilename_sig">.sig</string>
+	
+    <string name="defaultVersionNumber">1.0</string>
+    <string name="defaultVersionName">Almond</string>
+    <string name="defaultAndroidVersionNumber">4.2.2</string>
+    
+    <string name="updaterService">Updater Service</string>
+    <string name="currentVersion">Current Version</string>
+    <string name="newVersion">New Version</string>
+    <string name="installVersion">Install new version</string>
+    <string name="rebootDevice">Reboot device</string>
+    <string name="messageReadyToInstall">New version ready to install&#8230;</string>
+    <string name="invalidDownloadMessage">Invalid file downloaded</string>
+    <string name="fairphoneUpdateMessage">New Fairphone update available</string>
+    <string name="downloadMessage">Downloading version, please wait&#8230;</string>
+    <string name="downloadUpdateTitle">New Fairphone update</string>
+    <string name="wifiDiscaimerTitle">Wi-Fi disabled</string>
+	<string name="wifiDiscaimerMessage">The file you’re trying to download is too large for mobile connections (~200MB). Please enable Wi-Fi connection and try again.</string> 
+</resources>

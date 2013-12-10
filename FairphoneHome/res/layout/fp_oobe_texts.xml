@@ -1,0 +1,242 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="140dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitleBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_select_language" />
+
+        <ImageButton
+            android:id="@+id/selectLanguageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/transparent"
+            android:src="@drawable/oobe_language_button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="140dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitleBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_setup_wifi" />
+
+        <ImageButton
+            android:id="@+id/setupWifiButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/transparent"
+            android:src="@drawable/oobe_wifi_button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_intro_top" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/oobe_fairphone_logo" />
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:tag="fontHannah"
+            android:text="@string/oobe_intro_bottom" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edge_swipe_title" />
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-15dp"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edge_swipe_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_open_app_title" />
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_marginTop="-15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_open_app_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/oobe_edit_drag_intro"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_intro" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_add_title" />
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_marginTop="-15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_add_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_remove_title" />
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_marginTop="-15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_remove_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oobeTextGroup9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp"
+        android:visibility="gone" >
+
+        <TextView
+            style="@style/OOBETitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_trade_title" />
+
+        <TextView
+            style="@style/OOBEText"
+            android:layout_marginTop="-15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="fontHannah"
+            android:text="@string/oobe_edit_drag_trade_text" />
+    </LinearLayout>
+
+</merge>

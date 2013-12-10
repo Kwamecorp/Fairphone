@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/oobe_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fp_oobe_background" >
+
+    <FrameLayout
+        android:id="@+id/tutorialAnimationViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp" >
+    </FrameLayout>
+
+    <include layout="@layout/fp_oobe_texts" />
+
+    <Button
+        android:id="@+id/skipButton"
+        style="@style/OOBEButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:tag="fontHannah"
+        android:text="@string/oobe_skip" />
+
+    <Button
+        android:id="@+id/startButton"
+        style="@style/OOBEButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:tag="fontHannah"
+        android:text="@string/oobe_start" />
+
+    <Button
+        android:id="@+id/nextButton"
+        style="@style/OOBEButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:tag="fontHannah"
+        android:text="@string/oobe_next" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/OOBEButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:tag="fontHannah"
+        android:text="@string/oobe_back" />
+
+    <RelativeLayout
+        android:id="@+id/oobeVideoViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <VideoView
+            android:id="@+id/fp_oobe_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/fp_oobe_video_skip_button"
+            style="@style/OOBEButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:tag="fontHannah"
+            android:text="@string/oobe_skip" />
+    </RelativeLayout>
+
+</RelativeLayout>

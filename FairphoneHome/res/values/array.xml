@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <string-array name="prefMoodChangerType">
+            <item name="no_mood">No mood</item>
+            <item name="mood_background">Mood over background</item>
+            <item name="mood_only">Only mood</item>
+        </string-array>
+        <string-array name="prefMoodChangerTypeValues">
+            <item name="no_mood">0</item>
+            <item name="mood_background">1</item>
+            <item name="mood_only">2</item>
+        </string-array>
+
+<!--     <string-array name="prefMoodChangerAlpha"> -->
+<!--         <item name="25">See almost only background</item> -->
+<!--         <item name="50">See background and mood</item> -->
+<!--         <item name="75">See almost only mood</item> -->
+<!--         <item name="100">Solid, no background</item> -->
+<!--     </string-array> -->
+<!--     <string-array name="prefMoodChangerAlphaValues"> -->
+<!--         <item name="25">0.25</item> -->
+<!--         <item name="50">0.5</item> -->
+<!--         <item name="75">0.75</item> -->
+<!--         <item name="100">1.0</item> -->
+<!--     </string-array> -->
+    
+<!--     <string-array name="prefMoodChangerPlacement"> -->
+<!--         <item name="none">Mood nowhere</item> -->
+<!--         <item name="lockscreen">Mood on lock screen only</item> -->
+<!--         <item name="homescreen">Mood on home screen only</item> -->
+<!--         <item name="both">Mood everywhere</item> -->
+        
+<!--     </string-array> -->
+<!--     <string-array name="prefMoodChangerPlacementValues"> -->
+<!--         <item name="none">0</item> -->
+<!--         <item name="lockscreen">1</item> -->
+<!--         <item name="homescreen">2</item> -->
+<!--         <item name="both">3</item> -->
+<!--     </string-array> -->
+     
+</resources>
