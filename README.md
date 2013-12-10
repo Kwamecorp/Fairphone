@@ -2,7 +2,7 @@
 
 ##Fairphone concept
 
->“FairPhone’s mission is to bring a fair smartphone to the market – one designed and produced with minimal harm to people and planet.”
+>“Fairphone’s mission is to bring a fair smartphone to the market – one designed and produced with minimal harm to people and planet.”
 
 This is a strong statement in our days and as such the development of this product must ensure that all is within the mind goals of the [Fairphone](http://fairphone.com) company.
 
@@ -10,11 +10,11 @@ The major selling point of this device is the fact that it is made with borderli
 
 The device itself will hold an Android os and will compete in the mid level market.
 
-##FairPhoneOS
+##FairphoneOS
 ###Android Distribution overview
 The Android distribution shall be based on the Android 4.2.2 code provided by Google and updated by Mediatek.
 
-It has some customizations that are explained below and can be seen on this [video of the FairPhoneOS](https://vimeo.com/75009732)
+It has some customizations that are explained below and can be seen on this [video of the FairphoneOS](https://vimeo.com/75009732)
 
 ###HomeLauncher overview
 
