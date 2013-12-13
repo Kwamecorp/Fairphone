@@ -15,15 +15,6 @@
  */
 package org.fairphone.launcher.gappsinstaller;
 
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.Shell;
-
-import org.fairphone.launcher.R;
-import org.fairphone.launcher.rsa.utils.RSAUtils;
-import org.fairphone.widgets.gapps.GoogleAppsInstallerWidget;
-
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
@@ -44,6 +35,15 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.exceptions.RootDeniedException;
+import com.stericson.RootTools.execution.CommandCapture;
+import com.stericson.RootTools.execution.Shell;
+
+import org.fairphone.launcher.R;
+import org.fairphone.launcher.rsa.utils.RSAUtils;
+import org.fairphone.widgets.gapps.GoogleAppsInstallerWidget;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
