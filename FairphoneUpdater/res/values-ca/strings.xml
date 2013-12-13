@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updaterService">Servei d\'actualització</string>
+    <string name="currentVersion">Versió actual</string>
+    <string name="newVersion">Nova versió</string>
+    <string name="installVersion">Instal·lar versió nova</string>
+    <string name="rebootDevice">Reiniciar dispositiu</string>
+    <string name="messageReadyToInstall">La nova versió està llesta per a ser instal·lada&#8230;</string>
+    <string name="invalidDownloadMessage">L\'arxiu descarregat és incorrecte</string>
+    <string name="fairphoneUpdateMessage">Hi ha una actualizació del Fairphone disponible</string>
+    <string name="downloadMessage">Descarregant actualizació, tingues paciència&#8230;</string>
+    <string name="downloadUpdateTitle">Nova actualització per al Fairphone</string>
+    <string name="wifiDiscaimerMessage">L\'arxiu que està provant de descarregar és massa gran per a connexions mòbils. Siusplau connecta\'t a una xarxa inal·làmbrica i torna a intentar-ho.</string>
+</resources>
