@@ -15,11 +15,6 @@
  */
 package org.fairphone.peaceofmind;
 
-import org.fairphone.fairphonepeaceofmindapp.R;
-import org.fairphone.peaceofmind.data.PeaceOfMindStats;
-import org.fairphone.peaceofmind.ui.VerticalScrollListener;
-import org.fairphone.peaceofmind.ui.VerticalSeekBar;
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
@@ -50,6 +45,10 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import org.fairphone.peaceofmind.data.PeaceOfMindStats;
+import org.fairphone.peaceofmind.ui.VerticalScrollListener;
+import org.fairphone.peaceofmind.ui.VerticalSeekBar;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;

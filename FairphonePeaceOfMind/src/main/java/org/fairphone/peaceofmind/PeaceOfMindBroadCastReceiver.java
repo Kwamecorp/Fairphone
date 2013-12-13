@@ -15,11 +15,6 @@
  */
 package org.fairphone.peaceofmind;
 
-import org.fairphone.fairphonepeaceofmindapp.R;
-import org.fairphone.peaceofmind.data.PeaceOfMindRun;
-import org.fairphone.peaceofmind.data.PeaceOfMindStats;
-import org.fairphone.peaceofmind.widget.WidgetProvider;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,7 +27,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
+
+import org.fairphone.peaceofmind.data.PeaceOfMindRun;
+import org.fairphone.peaceofmind.data.PeaceOfMindStats;
+import org.fairphone.peaceofmind.widget.WidgetProvider;
 
 public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
 
@@ -204,8 +202,8 @@ public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
 			//just in case the user didn't clear it
 			manager.cancel(PEACE_OF_MIND_INTERRUPTED_NOTIFICATION);
 			
-			NotificationCompat.Builder builder =  
-		            new NotificationCompat.Builder(mContext)
+			Notification.Builder builder =
+		            new Notification.Builder(mContext)
 		            .setSmallIcon(R.drawable.peace_system_bar_icon)  
 		            .setContentTitle(mContext.getResources().getString(R.string.app_name))  
 		            .setContentText(mContext.getResources().getString(R.string.peace_on_notification));  
@@ -230,8 +228,8 @@ public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
 			
 			//send a notification saying that the peace was ended 
 			if(wasInterrupted){
-				NotificationCompat.Builder builder =  
-			            new NotificationCompat.Builder(mContext)
+				Notification.Builder builder =
+			            new Notification.Builder(mContext)
 			            .setSmallIcon(R.drawable.peace_system_bar_icon)
 			            .setAutoCancel(true)
 			            .setContentTitle(mContext.getResources().getString(R.string.app_name))  

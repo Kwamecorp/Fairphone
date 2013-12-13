@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.fairphone.fairphonepeaceofmindapp"
+    package="org.fairphone.peaceofmind"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,7 +9,7 @@
         android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <!--<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />-->
 
 
     <application
@@ -29,10 +29,6 @@
             </intent-filter>
         </activity>
         
-<!-- 
-        <service
-            android:name="org.fairphone.peaceofmind.service.TimerService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" /> -->
         <receiver
             android:name="org.fairphone.peaceofmind.PeaceOfMindBroadCastReceiver">
             <intent-filter>
@@ -44,7 +40,6 @@
             android:name="org.fairphone.peaceofmind.PeaceOfMindApplicationBroadcastReceiver">
         </receiver>
         
-        <!--  android:process=":remote" -->
         <!-- Widget -->
         <receiver
             android:name="org.fairphone.peaceofmind.widget.WidgetProvider"

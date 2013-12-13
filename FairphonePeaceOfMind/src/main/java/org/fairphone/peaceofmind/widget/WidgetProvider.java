@@ -15,9 +15,6 @@
  */
 package org.fairphone.peaceofmind.widget;
 
-import org.fairphone.fairphonepeaceofmindapp.R;
-import org.fairphone.peaceofmind.data.PeaceOfMindStats;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -30,6 +27,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import org.fairphone.peaceofmind.R;
+import org.fairphone.peaceofmind.data.PeaceOfMindStats;
 
 public class WidgetProvider extends AppWidgetProvider
 {

@@ -29,6 +29,8 @@ public class PeaceOfMindApplicationBroadcastReceiver extends BroadcastReceiver {
 	public static String PEACE_OF_MIND_ENDED = "PEACE_OF_MIND_ENDED";
 	public static String PEACE_OF_MIND_TICK = "PEACE_OF_MIND_TICK";
 
+    public PeaceOfMindApplicationBroadcastReceiver(){}
+
 	public interface Listener {
 		void peaceOfMindTick(long pastTime, long targetTime);
 
@@ -56,7 +58,7 @@ public class PeaceOfMindApplicationBroadcastReceiver extends BroadcastReceiver {
 		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_STARTED.equals(action)) {
 			mListener.peaceOfMindStarted(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
 		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_UPDATED.equals(action)) {
-			mListener.peaceOfMindUpdated(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME), 
+			mListener.peaceOfMindUpdated(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME),
 					intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
 		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED.equals(action)) {
 			mListener.peaceOfMindEnded();
