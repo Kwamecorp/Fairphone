@@ -157,7 +157,7 @@
     <string name="oobe_edit_drag_remove_text">de la izquierda para borrar de tus favoritos</string>
     
     <string name="oobe_edit_drag_trade_title">Arrastra los iconos</string>
-    <string name="oobe_edit_drag_trade_text">para cambiar de posición</string>
+    <string name="oobe_edit_drag_trade_text">para cambiarlos de posición</string>
     
     <string name="oobe_your_apps_intro">Tus aplicaciones más usadas en un solo lugar</string>
     <string name="oobe_your_apps_learning">Tu teléfono recuerda las aplicaciones más usadas</string>
