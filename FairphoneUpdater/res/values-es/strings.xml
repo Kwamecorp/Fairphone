@@ -11,5 +11,5 @@
     <string name="downloadMessage">Descargando actualización, ten paciencia&#8230;</string>
     <string name="downloadUpdateTitle">Nueva actualización para Fairphone</string>
     <string name="wifiDiscaimerTitle">Wi-Fi desconectado</string>
-	<string name="wifiDiscaimerMessage">El archivo que está intentando descargar es muy largo para conexiones móviles (~200mb). Por favor conéctese al Wi-Fi e intente otra vez.</string>
+	<string name="wifiDiscaimerMessage">El archivo que está intentando descargar demasiado grande para conexiones móviles (~200mb). Por favor conéctese al Wi-Fi e intente otra vez.</string>
 </resources>
