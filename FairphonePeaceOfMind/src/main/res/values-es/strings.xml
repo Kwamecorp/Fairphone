@@ -38,6 +38,7 @@ Modifications (MN 2013-12-16):
     <string name="peace_on_notification">En paz</string>
     <string name="peace_off_notification">Peace of Mind está desconectado</string>
 
+    <string name="btn_off_widget">Cerrar</string>
     <string name="airplane_mode_enabled">Modo avión activado</string>
     <string name="silent_mode_enabled">El sonido está desactivado</string>
 

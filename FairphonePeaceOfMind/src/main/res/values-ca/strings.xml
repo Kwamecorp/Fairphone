@@ -38,6 +38,7 @@ Modifications (MN 2013-12-16):
     <string name="peace_on_notification">En pau</string>
     <string name="peace_off_notification">Peace of Mind està desconnectat</string>
 
+    <string name="btn_off_widget">Tanca</string>
     <string name="airplane_mode_enabled">Mode d’avió activat</string>
     <string name="silent_mode_enabled">So desactivat</string>
 

@@ -38,6 +38,7 @@ Modifications (MN 2013-12-16):
     <string name="peace_on_notification">In rust</string>
     <string name="peace_off_notification">Peace of Mind staat uit</string>
 
+    <string name="btn_off_widget">Sluiten</string>
     <string name="airplane_mode_enabled">Vliegmodus is AAN</string>
     <string name="silent_mode_enabled">Geluid is UIT</string>
 

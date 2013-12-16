@@ -39,6 +39,7 @@ Modifications (MN 2013-12-16):
     <string name="peace_on_notification">En tranquillité</string>
     <string name="peace_off_notification">L’application Peace of Mind est desactivée</string>
 
+    <string name="btn_off_widget">Fermer</string>
     <string name="airplane_mode_enabled">Le mode Avion est activé</string>
     <string name="silent_mode_enabled">Le son est désactivé</string>
 

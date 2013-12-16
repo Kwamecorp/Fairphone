@@ -37,7 +37,7 @@ Modifications (MN 2013-12-16):
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/peace_app_icon"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
@@ -66,7 +66,7 @@ Modifications (MN 2013-12-16):
         <receiver
             android:name="org.fairphone.peaceofmind.widget.WidgetProvider"
             android:exported="false"
-            android:icon="@drawable/peace_widget_icon"
+            android:icon="@drawable/widget_preview"
             android:label="@string/peace_of_mind_widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

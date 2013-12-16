@@ -215,7 +215,7 @@ public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
 
             NotificationCompat.Builder builder =
                     new NotificationCompat.Builder(mContext)
-                            .setSmallIcon(R.drawable.peace_system_bar_icon)
+                            .setSmallIcon(R.drawable.ic_notify)
                             .setContentTitle(mContext.getResources().getString(R.string.app_name))
                             .setContentText(mContext.getResources().getString(R.string.peace_on_notification));
 
@@ -241,7 +241,7 @@ public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
             if (wasInterrupted) {
                 NotificationCompat.Builder builder =
                         new NotificationCompat.Builder(mContext)
-                                .setSmallIcon(R.drawable.peace_system_bar_icon)
+                                .setSmallIcon(R.drawable.ic_notify)
                                 .setAutoCancel(true)
                                 .setContentTitle(mContext.getResources().getString(R.string.app_name))
                                 .setContentText(mContext.getResources().getString(R.string.peace_off_notification))
