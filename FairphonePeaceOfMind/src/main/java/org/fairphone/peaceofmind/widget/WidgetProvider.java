@@ -13,6 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+Modifications (MN 2013-12-16):
+- Removed empty methods: onEnabled(), onDisabled() and onDeleted()
+*/
+
 package org.fairphone.peaceofmind.widget;
 
 import android.app.PendingIntent;
@@ -38,27 +44,6 @@ public class WidgetProvider extends AppWidgetProvider
 
     private static final String TAG = WidgetProvider.class.getSimpleName();
     private PeaceOfMindStats mCurrentStats;
-
-    @Override
-    public void onEnabled(Context context)
-    {
-        Log.d(TAG, "Fairphone - WidgetProvider Context is " + context);
-    }
-
-    @Override
-    public void onDisabled(Context context)
-    {
-        // Called once the last instance of your widget is removed from the
-        // homescreen
-        super.onDisabled(context);
-    }
-
-    @Override
-    public void onDeleted(Context context, int[] appWidgetIds)
-    {
-        // Widget instance is removed from the homescreen
-        Log.d(TAG, "onDeleted - " + appWidgetIds);
-    }
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions)

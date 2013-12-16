@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2013 Fairphone Project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Modifications (MN 2013-12-16):
+- Added License
+- Changed min/target SDK version
+- Replaced WRITE_SECURE_SETTINGS by ACCESS_SUPEUSER
+- Removed portrait orientation for PeaceOfMindActivity
+- Added RINGER_MODE_CHANGED intent-filter
+
+-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.fairphone.peaceofmind"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!--<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />-->
-
+    <uses-permission android:name="android.permission.ACCESS_SUPEUSER" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/peace_app_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="org.fairphone.peaceofmind.PeaceOfMindActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" 
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,24 +50,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <receiver
-            android:name="org.fairphone.peaceofmind.PeaceOfMindBroadCastReceiver">
+
+        <receiver android:name="org.fairphone.peaceofmind.PeaceOfMindBroadCastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.RINGER_MODE_CHANGED" />
+            </intent-filter>
         </receiver>
-        <receiver
-            android:name="org.fairphone.peaceofmind.PeaceOfMindApplicationBroadcastReceiver">
-        </receiver>
-        
+        <receiver android:name="org.fairphone.peaceofmind.PeaceOfMindApplicationBroadcastReceiver"></receiver>
+
         <!-- Widget -->
         <receiver
             android:name="org.fairphone.peaceofmind.widget.WidgetProvider"
             android:exported="false"
             android:icon="@drawable/peace_widget_icon"
-            android:label="@string/peace_of_mind_widget" >
+            android:label="@string/peace_of_mind_widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

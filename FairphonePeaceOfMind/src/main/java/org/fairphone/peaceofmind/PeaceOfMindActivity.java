@@ -13,6 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+Modifications (MN 2013-12-16):
+- Removed Log outputs
+- Commented-out unused variables
+- Added SuperuserHelper.requestAccess() to onCreate()
+- Moved unRegisterForPeaceOfMindBroadCasts() from onPause() to onDestroy()
+- Verify not null for mHelpButton and mCloseButton
+- Handle listener leaks using mHasRegisterdReceiver
+*/
 package org.fairphone.peaceofmind;
 
 import android.animation.Animator;
@@ -30,7 +40,6 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -47,33 +56,32 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import org.fairphone.peaceofmind.data.PeaceOfMindStats;
+import org.fairphone.peaceofmind.superuser.SuperuserHelper;
 import org.fairphone.peaceofmind.ui.VerticalScrollListener;
 import org.fairphone.peaceofmind.ui.VerticalSeekBar;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class PeaceOfMindActivity extends Activity implements VerticalScrollListener, PeaceOfMindApplicationBroadcastReceiver.Listener, OnPreparedListener, OnCompletionListener
-{
-    public static String START_PEACE_OF_MIND = "START_PEACE_OF_MIND";
-    public static String END_PEACE_OF_MIND = "END_PEACE_OF_MIND";
-    public static String UPDATE_PEACE_OF_MIND = "UPDATE_PEACE_OF_MIND";
+public class PeaceOfMindActivity extends Activity implements VerticalScrollListener, PeaceOfMindApplicationBroadcastReceiver.Listener, OnPreparedListener, OnCompletionListener {
     public static final String TIMER_TICK = "TIMER_TICK";
-    public static int count = 0;
-
-    private static final float INITIAL_PERCENTAGE = 0.1f;
     public static final int MINUTE = 60 * 1000;
     public static final int HOUR = 60 * MINUTE;
-    protected static final String TAG = PeaceOfMindActivity.class.getSimpleName();
     public static final String BROADCAST_TARGET_PEACE_OF_MIND = "BROADCAST_TARGET_PEACE_OF_MIND";
+    protected static final String TAG = PeaceOfMindActivity.class.getSimpleName();
+    private static final float INITIAL_PERCENTAGE = 0.1f;
+    //    public static String START_PEACE_OF_MIND = "START_PEACE_OF_MIND";
+//    public static String END_PEACE_OF_MIND = "END_PEACE_OF_MIND";
+    public static String UPDATE_PEACE_OF_MIND = "UPDATE_PEACE_OF_MIND";
+    //    public static int count = 0;
+    static Semaphore mSemaphore = new Semaphore(1);
+    private boolean mHasRegisterdReceiver = false;
     private TextView mTotalTimeText;
-
     private LinearLayout mCurrentTimeGroup;
     private TextView mCurrentTimeText;
     private LinearLayout mCurrentToTimeGroup;
     private TextView mCurrentToTimeText;
     private TextView mCurrentToText;
-
     private TextView mCurrentTimeAtText;
     private TextView mCurrentTimePEACEText;
     private LinearLayout mCurrentTimeInPeaceText;
@@ -82,21 +90,19 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     private Button mHelpButton;
     private View mSeekbarBackgroundOff;
     private View mSeekbarBackgroundOn;
-
     private FrameLayout mHelpHolder;
     private LinearLayout mHelpLayout;
     private Button mCloseButton;
-
     private VideoView mVideo;
-
     private PeaceOfMindApplicationBroadcastReceiver mBroadCastReceiver;
     private SharedPreferences mSharedPreferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SuperuserHelper.requestAccess(getApplicationContext());
 
         setupLayout();
 
@@ -105,14 +111,12 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         setupBroadCastReceiverAlarm();
     }
 
-    private void loadAvailableData()
-    {
+    private void loadAvailableData() {
         PeaceOfMindStats currentStats = PeaceOfMindStats.getStatsFromSharedPreferences(mSharedPreferences);
 
         mVerticalSeekBar.setThumb(getResources().getDrawable(currentStats.mIsOnPeaceOfMind ? R.drawable.seekbar_thumb_on : R.drawable.seekbar_thumb_off));
         mVerticalSeekBar.setThumbOffset(0);
-        if (currentStats.mIsOnPeaceOfMind)
-        {
+        if (currentStats.mIsOnPeaceOfMind) {
             float targetTimePercent = (float) currentStats.mCurrentRun.mTargetTime / (float) PeaceOfMindStats.MAX_TIME;
 
             mVerticalSeekBar.setInvertedProgress((int) (targetTimePercent * mVerticalSeekBar.getHeight()));
@@ -120,9 +124,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             updateTextForNewTime(currentStats.mCurrentRun.mPastTime, currentStats.mCurrentRun.mTargetTime);
             updateTimeTextLabel(targetTimePercent * 100);
             updateScreenTexts();
-        }
-        else
-        {
+        } else {
             mTotalTimeText.setText(generateStringTimeFromMillis(0, true));
             mCurrentTimeText.setText(generateStringTimeFromMillis(0, true));
         }
@@ -131,15 +133,13 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         mVideo.setBackgroundResource(currentStats.mIsOnPeaceOfMind ? R.drawable.background_on_repeat : R.drawable.background_off_repeat);
     }
 
-    private void updateScreenTexts()
-    {
+    private void updateScreenTexts() {
         PeaceOfMindStats currentStats = PeaceOfMindStats.getStatsFromSharedPreferences(mSharedPreferences);
 
         int blue = getResources().getColor(R.color.blue);
         int grey = getResources().getColor(R.color.blue_grey);
 
-        if (currentStats.mIsOnPeaceOfMind)
-        {
+        if (currentStats.mIsOnPeaceOfMind) {
             // current time is blue
             mCurrentTimeText.setTextColor(blue);
             mCurrentTimeAtText.setTextColor(blue);
@@ -150,12 +150,10 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             mCurrentTimePEACEText.setAlpha(1.0f);
 
             mCurrentToTimeGroup.setVisibility(View.VISIBLE);
-            
+
             mSeekbarBackgroundOff.setVisibility(View.GONE);
             mSeekbarBackgroundOn.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             // show the current time and text at grey
             mCurrentTimeText.setTextColor(grey);
             mCurrentTimeAtText.setTextColor(grey);
@@ -166,52 +164,47 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             mCurrentTimePEACEText.setAlpha(0.5f);
 
             mCurrentToTimeGroup.setVisibility(View.INVISIBLE);
-            
+
             mSeekbarBackgroundOff.setVisibility(View.VISIBLE);
             mSeekbarBackgroundOn.setVisibility(View.GONE);
         }
 
-        if (mTotalTimeText.getVisibility() == View.VISIBLE)
-        {
-        	//hide the current time group when the target time approaches 
-        	//TODO: Fix the ugly magical numbers
-        	float position = mCurrentTimeGroup.getY() - mTotalTimeText.getY();
-            float alpha = (position < 500) ? (10.0f * (position-50) / 100.0f) : 1.0f;
+        if (mTotalTimeText.getVisibility() == View.VISIBLE) {
+            //hide the current time group when the target time approaches
+            //TODO: Fix the ugly magical numbers
+            float position = mCurrentTimeGroup.getY() - mTotalTimeText.getY();
+            float alpha = (position < 500) ? (10.0f * (position - 50) / 100.0f) : 1.0f;
             mCurrentTimeGroup.setAlpha(alpha);
             mCurrentTimeInPeaceText.setAlpha(alpha);
-        }
-        else
-        {
-        	if(mCurrentTimeGroup.getAlpha() != 1.0f ){
-        		if(!currentStats.mIsOnPeaceOfMind){
-	        		Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.target_time_fade_in_fast);
-	        		mCurrentTimeGroup.startAnimation(fadeIn);
-	        		mCurrentTimeInPeaceText.startAnimation(fadeIn);
-        		}
-	            mCurrentTimeGroup.setAlpha(1.0f);
-	            mCurrentTimeInPeaceText.setAlpha(1.0f);
-        	}
+        } else {
+            if (mCurrentTimeGroup.getAlpha() != 1.0f) {
+                if (!currentStats.mIsOnPeaceOfMind) {
+                    Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.target_time_fade_in_fast);
+                    mCurrentTimeGroup.startAnimation(fadeIn);
+                    mCurrentTimeInPeaceText.startAnimation(fadeIn);
+                }
+                mCurrentTimeGroup.setAlpha(1.0f);
+                mCurrentTimeInPeaceText.setAlpha(1.0f);
+            }
         }
     }
 
-    private void updateBackground(boolean on)
-    {
-    	View backgroundOverlay = findViewById(R.id.backgroundOverlay);
-        
+    private void updateBackground(boolean on) {
+        View backgroundOverlay = findViewById(R.id.backgroundOverlay);
+
         int backgroundDrawableId = on ? R.drawable.background_on_repeat : R.drawable.background_off_repeat;
-        
+
         // setup the background
         backgroundOverlay.setBackgroundResource(backgroundDrawableId);
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         mVideo.setVisibility(View.INVISIBLE);
         mVideo.stopPlayback();
-        
+
         // load data from the shared preferences
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -219,24 +212,13 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    protected void onPause()
-    {
-        super.onPause();
+    protected void onDestroy() {
+        unRegisterForPeaceOfMindBroadCasts();
 
-        if (isFinishing())
-        {
-            unRegisterForPeaceOfMindBroadCasts();
-        }
-    }
-
-    @Override
-    protected void onDestroy()
-    {
         super.onDestroy();
     }
 
-    private void setupLayout()
-    {
+    private void setupLayout() {
         mTotalTimeText = (TextView) findViewById(R.id.timeTextTotal);
 
         mCurrentTimeGroup = (LinearLayout) findViewById(R.id.timeTextCurrentGroup);
@@ -252,13 +234,12 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
         mVerticalSeekBar = (VerticalSeekBar) findViewById(R.id.verticalSeekBar);
 
-        mProgressView = (View) findViewById(R.id.progressView);
+        mProgressView = findViewById(R.id.progressView);
         mHelpButton = (Button) findViewById(R.id.helpButton);
         mSeekbarBackgroundOff = findViewById(R.id.seekbar_background_off);
         mSeekbarBackgroundOn = findViewById(R.id.seekbar_background_on);
 
-        if (mVerticalSeekBar != null)
-        {
+        if (mVerticalSeekBar != null) {
             mVerticalSeekBar.setPeaceListener(this);
         }
 
@@ -266,23 +247,23 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         mHelpLayout = (LinearLayout) findViewById(R.id.helpLayout);
         mCloseButton = (Button) findViewById(R.id.closeButton);
 
-        mHelpButton.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                showHelp();
-            }
-        });
+        if (mHelpButton != null) {
+            mHelpButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showHelp();
+                }
+            });
+        }
 
-        mCloseButton.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                hideHelp();
-            }
-        });
+        if (mCloseButton != null) {
+            mCloseButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    hideHelp();
+                }
+            });
+        }
 
         mVideo = (VideoView) findViewById(R.id.pomVideo);
 
@@ -296,14 +277,12 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus)
-    {
+    public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         loadAvailableData();
     }
 
-    public void showHelp()
-    {
+    public void showHelp() {
         // disable the seekbar and help button when the help is showed
         mVerticalSeekBar.setEnabled(false);
         mHelpButton.setEnabled(false);
@@ -313,21 +292,17 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         showIn.setDuration(400);
         showIn.start();
 
-        showIn.addListener(new AnimatorListener()
-        {
+        showIn.addListener(new AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation)
-            {
+            public void onAnimationStart(Animator animation) {
             }
 
             @Override
-            public void onAnimationRepeat(Animator animation)
-            {
+            public void onAnimationRepeat(Animator animation) {
             }
 
             @Override
-            public void onAnimationEnd(Animator animation)
-            {
+            public void onAnimationEnd(Animator animation) {
                 mHelpLayout.setVisibility(View.VISIBLE);
                 Interpolator decelerator = new DecelerateInterpolator();
                 ObjectAnimator translateIn = ObjectAnimator.ofFloat(mHelpLayout, "translationY", 900f, 0f);
@@ -337,33 +312,27 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             }
 
             @Override
-            public void onAnimationCancel(Animator animation)
-            {
+            public void onAnimationCancel(Animator animation) {
             }
         });
 
     }
 
-    public void hideHelp()
-    {
+    public void hideHelp() {
         ObjectAnimator showIn = ObjectAnimator.ofFloat(mHelpHolder, "alpha", 1, 0);
         showIn.setDuration(400);
         showIn.start();
-        showIn.addListener(new AnimatorListener()
-        {
+        showIn.addListener(new AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation)
-            {
+            public void onAnimationStart(Animator animation) {
             }
 
             @Override
-            public void onAnimationRepeat(Animator animation)
-            {
+            public void onAnimationRepeat(Animator animation) {
             }
 
             @Override
-            public void onAnimationEnd(Animator animation)
-            {
+            public void onAnimationEnd(Animator animation) {
                 mHelpButton.setEnabled(true);
                 mVerticalSeekBar.setEnabled(true);
                 mHelpHolder.setVisibility(View.GONE);
@@ -371,13 +340,12 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             }
 
             @Override
-            public void onAnimationCancel(Animator animation)
-            {
+            public void onAnimationCancel(Animator animation) {
             }
         });
 
     }
-    
+
     @Override
     public void onBackPressed() {
         if (mHelpLayout.getVisibility() == View.VISIBLE) {
@@ -388,26 +356,29 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         }
     }
 
-    private void registerForPeaceOfMindBroadCasts()
-    {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_STARTED);
-        filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_UPDATED);
-        filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED);
-        filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TICK);
+    private void registerForPeaceOfMindBroadCasts() {
+        if (!mHasRegisterdReceiver) {
 
-        mBroadCastReceiver = new PeaceOfMindApplicationBroadcastReceiver(this);
-        registerReceiver(mBroadCastReceiver, filter);
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_STARTED);
+            filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_UPDATED);
+            filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED);
+            filter.addAction(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TICK);
+
+            mBroadCastReceiver = new PeaceOfMindApplicationBroadcastReceiver(this);
+            registerReceiver(mBroadCastReceiver, filter);
+            mHasRegisterdReceiver = true;
+        }
     }
 
-    private void unRegisterForPeaceOfMindBroadCasts()
-    {
-        unregisterReceiver(mBroadCastReceiver);
+    private void unRegisterForPeaceOfMindBroadCasts() {
+        if (mHasRegisterdReceiver) {
+            unregisterReceiver(mBroadCastReceiver);
+            mHasRegisterdReceiver = false;
+        }
     }
 
-    private void setupBroadCastReceiverAlarm()
-    {
-        Log.d(TAG, "Setting the alarm tick");
+    private void setupBroadCastReceiverAlarm() {
         Intent alarmIntent = new Intent(this, PeaceOfMindBroadCastReceiver.class);
         alarmIntent.setAction(PeaceOfMindActivity.TIMER_TICK);
 
@@ -418,17 +389,16 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    public void updateBarScroll(float progress)
-    {
+    public void updateBarScroll(float progress) {
         // TODO: Put the 612 seekbar dimension in resources in dp if possible
         int pos = (int) (612 - (612 / 100 * progress) + (progress / 2) - 53);
 
         updateTimeTextLabel(progress);
 
-        if(mTotalTimeText.getVisibility() == View.INVISIBLE){
-        	mTotalTimeText.setVisibility(View.VISIBLE);
-        	Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.target_time_fade_in_fast);
-        	mTotalTimeText.startAnimation(fadeIn);
+        if (mTotalTimeText.getVisibility() == View.INVISIBLE) {
+            mTotalTimeText.setVisibility(View.VISIBLE);
+            Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.target_time_fade_in_fast);
+            mTotalTimeText.startAnimation(fadeIn);
         }
         mTotalTimeText.setY(pos);
 
@@ -436,30 +406,25 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    public synchronized void scrollEnded(float percentage)
-    {
-        if(mTotalTimeText.getVisibility() == View.VISIBLE){
-        	Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
-	    	mTotalTimeText.startAnimation(fadeOut);
-	    	fadeOut.setAnimationListener(new AnimationListener()
-	        {
-	            @Override
-	            public void onAnimationStart(Animation animation)
-	            {
-	            }
+    public synchronized void scrollEnded(float percentage) {
+        if (mTotalTimeText.getVisibility() == View.VISIBLE) {
+            Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
+            mTotalTimeText.startAnimation(fadeOut);
+            fadeOut.setAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
 
-	            @Override
-	            public void onAnimationRepeat(Animation animation)
-	            {
-	            }
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
 
-	            @Override
-	            public void onAnimationEnd(Animation animation)
-	            {
-	    	    	mTotalTimeText.setVisibility(View.INVISIBLE);
-	    	    	updateScreenTexts();
-	            }
-	        });
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mTotalTimeText.setVisibility(View.INVISIBLE);
+                    updateScreenTexts();
+                }
+            });
         }
 
         long targetTime = roundToInterval((long) (percentage * PeaceOfMindStats.MAX_TIME));
@@ -472,8 +437,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         sendBroadcast(intent);
     }
 
-    private long roundToInterval(long time)
-    {
+    private long roundToInterval(long time) {
 
         int hours = (int) (time / HOUR);
         int minutes = (int) ((time - hours * HOUR) / MINUTE);
@@ -482,8 +446,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
         long newTime = 0;
 
-        switch (index)
-        {
+        switch (index) {
             case 1:
             case 6:
                 newTime -= MINUTE;
@@ -502,13 +465,12 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
                 break;
         }
 
-        Log.d(TAG, "Index: " + index + " - " + newTime);
+//        Log.d(TAG, "Index: " + index + " - " + newTime);
 
         return time + newTime;
     }
 
-    private void updateTextForNewTime(long timePast, long targetTime)
-    {
+    private void updateTextForNewTime(long timePast, long targetTime) {
         long maxTime = PeaceOfMindStats.MAX_TIME;
 
         float timePercentage = 0;
@@ -528,46 +490,42 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
     }
 
-    private int getCurrentProgressY(long timePast, long targetTime, long maxTime, float timePercentage)
-    {
-        if (targetTime > 0)
-        {
+    private int getCurrentProgressY(long timePast, long targetTime, long maxTime, float timePercentage) {
+        if (targetTime > 0) {
             timePercentage = (((float) timePast / (float) (maxTime)));
         }
 
-        System.out.println("Updating time to " + timePercentage + " - " + timePast + " target time " + targetTime);
+//        Log.d(TAG, "Updating time to " + timePercentage + " - " + timePast + " target time " + targetTime);
 
         int finalY = (int) (0.8f * mVerticalSeekBar.getHeight() * timePercentage + (mVerticalSeekBar.getHeight() * INITIAL_PERCENTAGE));
         return finalY;
     }
 
-    private String generateStringTimeFromMillis(long timePast, boolean reset)
-    {
-    	int hours = 0;
-    	int minutes = 0;
-    	if(!reset){
-	        hours = (int) (timePast / HOUR);
-	        int timeInMinutes = (int) (timePast - hours * HOUR);
-	        
-	        if(hours == 0){
-	        	minutes = timeInMinutes - MINUTE > 0 ? timeInMinutes / MINUTE : 1;
-	        }else{
-	        	minutes = timeInMinutes / MINUTE;
-	        }
-    	}
+    private String generateStringTimeFromMillis(long timePast, boolean reset) {
+        int hours = 0;
+        int minutes = 0;
+        if (!reset) {
+            hours = (int) (timePast / HOUR);
+            int timeInMinutes = (int) (timePast - hours * HOUR);
+
+            if (hours == 0) {
+                minutes = timeInMinutes - MINUTE > 0 ? timeInMinutes / MINUTE : 1;
+            } else {
+                minutes = timeInMinutes / MINUTE;
+            }
+        }
 
         String timeStr = String.format("%d%s%02d", hours, getResources().getString(R.string.hour_separator), minutes);
-        if(hours == 0){
-        	mCurrentToText.setText(getResources().getString(R.string.to_m));
-        }else{
-        	mCurrentToText.setText(getResources().getString(R.string.to_h));
+        if (hours == 0) {
+            mCurrentToText.setText(getResources().getString(R.string.to_m));
+        } else {
+            mCurrentToText.setText(getResources().getString(R.string.to_h));
         }
 
         return timeStr;
     }
 
-    private void updateTimeTextLabel(float progress)
-    {
+    private void updateTimeTextLabel(float progress) {
         long targetTime = roundToInterval((long) (PeaceOfMindStats.MAX_TIME * progress / 100.0f));
 
         mTotalTimeText.setText(generateStringTimeFromMillis(targetTime, targetTime == 0));
@@ -575,23 +533,19 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    public void peaceOfMindTick(long pastTime, long targetTime)
-    {
+    public void peaceOfMindTick(long pastTime, long targetTime) {
         updateTextForNewTime(pastTime, targetTime);
         updateScreenTexts();
     }
 
-    static Semaphore mSemaphore = new Semaphore(1);
-    
     @Override
-    public synchronized void peaceOfMindStarted(long targetTime)
-    {
-    	try {
-			mSemaphore.tryAcquire(1, TimeUnit.SECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    	
+    public synchronized void peaceOfMindStarted(long targetTime) {
+        try {
+            mSemaphore.tryAcquire(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
         mSeekbarBackgroundOff.startAnimation(fadeOut);
 
@@ -599,24 +553,20 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
         mSeekbarBackgroundOn.startAnimation(fadeIn);
 
-        fadeIn.setAnimationListener(new AnimationListener()
-        {
+        fadeIn.setAnimationListener(new AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation)
-            {
+            public void onAnimationStart(Animation animation) {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation)
-            {
+            public void onAnimationRepeat(Animation animation) {
             }
 
             @Override
-            public void onAnimationEnd(Animation animation)
-            {
-            	mSeekbarBackgroundOff.setVisibility(View.GONE);
+            public void onAnimationEnd(Animation animation) {
+                mSeekbarBackgroundOff.setVisibility(View.GONE);
                 mSeekbarBackgroundOn.setVisibility(View.VISIBLE);
-                
+
                 mSemaphore.release();
             }
         });
@@ -633,9 +583,8 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         startPeaceOfMindVideo();
     }
 
-    private void startPeaceOfMindVideo()
-    {
-		mVideo.setBackgroundResource(R.drawable.background_off_repeat);
+    private void startPeaceOfMindVideo() {
+        mVideo.setBackgroundResource(R.drawable.background_off_repeat);
         mVideo.setVisibility(View.VISIBLE);
 
         mVideo.setOnPreparedListener(this);
@@ -643,86 +592,76 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         mVideo.setDrawingCacheEnabled(true);
     }
 
-    private void stopPeaceOfMindVideo()
-    {   
-		mVideo.removeCallbacks(null);
-		if(mVideo.getVisibility() != View.VISIBLE){
-			mVideo.setVisibility(View.VISIBLE);
-		}
-		
-		Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
-		mVideo.startAnimation(fadeOut);
+    private void stopPeaceOfMindVideo() {
+        mVideo.removeCallbacks(null);
+        if (mVideo.getVisibility() != View.VISIBLE) {
+            mVideo.setVisibility(View.VISIBLE);
+        }
 
-		updateBackground(false);
-        fadeOut.setAnimationListener(new AnimationListener()
-        {
+        Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
+        mVideo.startAnimation(fadeOut);
+
+        updateBackground(false);
+        fadeOut.setAnimationListener(new AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation)
-            {
+            public void onAnimationStart(Animation animation) {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation)
-            {
+            public void onAnimationRepeat(Animation animation) {
             }
 
             @Override
-            public void onAnimationEnd(Animation animation)
-            {
-            	mVideo.setVisibility(View.INVISIBLE);
+            public void onAnimationEnd(Animation animation) {
+                mVideo.setVisibility(View.INVISIBLE);
                 mVideo.stopPlayback();
             }
         });
     }
 
-    public void onPrepared(MediaPlayer mp)
-    {
-    	//Used to avoid the initial black flicker
-    	//remove the foreground 30 miliseconds after the video starts
-    	mVideo.postDelayed(new Runnable() {
-            public void run()
-            {
-                if (mVideo.isPlaying()){
-                	mVideo.setBackgroundResource(0);
+    public void onPrepared(MediaPlayer mp) {
+        //Used to avoid the initial black flicker
+        //remove the foreground 30 miliseconds after the video starts
+        mVideo.postDelayed(new Runnable() {
+            public void run() {
+                if (mVideo.isPlaying()) {
+                    mVideo.setBackgroundResource(0);
                     return;
                 }
 
             }
         }, 30);
-    	
-    	//Used to avoid the final black flicker
-    	//remove the foreground 20 miliseconds before the video ends
-    	mVideo.postDelayed(new Runnable() {
-            public void run()
-            {
-                if (mVideo.isPlaying()){
-                	mVideo.setBackgroundResource(R.drawable.background_on_repeat);		
+
+        //Used to avoid the final black flicker
+        //remove the foreground 20 miliseconds before the video ends
+        mVideo.postDelayed(new Runnable() {
+            public void run() {
+                if (mVideo.isPlaying()) {
+                    mVideo.setBackgroundResource(R.drawable.background_on_repeat);
                     return;
                 }
 
             }
         }, mVideo.getDuration() - 20);
-    	mVideo.start();
+        mVideo.start();
     }
-    
-
-	@Override
-	public void onCompletion(MediaPlayer mp) {
-		updateBackground(true);
-		mVideo.removeCallbacks(null);
-		mVideo.setBackgroundResource(R.drawable.background_on_repeat);
-		mVideo.stopPlayback();
-	}
 
     @Override
-    public synchronized void peaceOfMindEnded()
-    {
-    	try {
-			mSemaphore.tryAcquire(1, TimeUnit.SECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    	
+    public void onCompletion(MediaPlayer mp) {
+        updateBackground(true);
+        mVideo.removeCallbacks(null);
+        mVideo.setBackgroundResource(R.drawable.background_on_repeat);
+        mVideo.stopPlayback();
+    }
+
+    @Override
+    public synchronized void peaceOfMindEnded() {
+        try {
+            mSemaphore.tryAcquire(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_fast);
 
         mSeekbarBackgroundOff.startAnimation(fadeIn);
@@ -730,32 +669,28 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_fast);
         mSeekbarBackgroundOn.startAnimation(fadeOut);
 
-        fadeIn.setAnimationListener(new AnimationListener()
-        {
+        fadeIn.setAnimationListener(new AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation)
-            {
+            public void onAnimationStart(Animation animation) {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation)
-            {
+            public void onAnimationRepeat(Animation animation) {
             }
 
             @Override
-            public void onAnimationEnd(Animation animation)
-            {
+            public void onAnimationEnd(Animation animation) {
                 mSeekbarBackgroundOff.setVisibility(View.VISIBLE);
                 mSeekbarBackgroundOn.setVisibility(View.GONE);
 
-            	updateScreenTexts();
+                updateScreenTexts();
                 stopPeaceOfMindVideo();
-                
+
                 mSemaphore.release();
             }
         });
-        
-    	updateScreenTexts();
+
+        updateScreenTexts();
         mVerticalSeekBar.setThumb(getResources().getDrawable(R.drawable.seekbar_thumb_off));
         mVerticalSeekBar.setThumbOffset(0);
         mVerticalSeekBar.setInvertedProgress(0);
@@ -766,8 +701,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     }
 
     @Override
-    public void peaceOfMindUpdated(long pastTime, long newTargetTime)
-    {
+    public void peaceOfMindUpdated(long pastTime, long newTargetTime) {
         updateTextForNewTime(pastTime, newTargetTime);
     }
 }

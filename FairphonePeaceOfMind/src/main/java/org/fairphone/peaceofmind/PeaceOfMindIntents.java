@@ -13,10 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+Modifications (MN 2013-12-16):
+- Added toggle and state extras
+*/
+
 package org.fairphone.peaceofmind;
 
 public class PeaceOfMindIntents {
 	public static String PIECE_OF_MIND_APP  = "org.fairphone.peaceofmind.launchapp";
 	public static String STOP_PIECE_OF_MIND = "org.fairphone.peaceofmind.stoppeaceofmind";
-	
+    public static String EXTRA_TOGGLE = "pom_toggle";
+    public static String EXTRA_STATE = "pom_state";
 }

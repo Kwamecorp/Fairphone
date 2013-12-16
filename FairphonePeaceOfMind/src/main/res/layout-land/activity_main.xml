@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (C) 2013 Fairphone Project
+Copyright (C) 2013 Mudar Noufal, PeaceOfMind+
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,7 +17,6 @@ limitations under the License.
 
 Modifications (MN 2013-12-16):
 - Added License
-- Added RelativeLayout wrapper around VideoView for fullscreen resize
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/background"
@@ -43,7 +43,6 @@ Modifications (MN 2013-12-16):
             android:layout_alignParentTop="true" />
     </RelativeLayout>
 
-
     <View
         android:id="@+id/backgroundGrid"
         android:layout_width="match_parent"
@@ -57,10 +56,10 @@ Modifications (MN 2013-12-16):
         android:orientation="vertical">
 
         <RelativeLayout
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
             android:layout_width="match_parent"
-            android:layout_height="440dp"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="50dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/timeTextCurrentGroup"
@@ -82,7 +81,6 @@ Modifications (MN 2013-12-16):
                     android:id="@+id/toTimeGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-7dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -108,7 +106,7 @@ Modifications (MN 2013-12-16):
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/verticalSeekBar"
-                android:layout_marginBottom="28dp"
+                android:layout_marginBottom="32dp"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/verticalSeekBar"
                 android:alpha="0.5"
@@ -134,7 +132,7 @@ Modifications (MN 2013-12-16):
                 android:id="@+id/timeTextTotal"
                 style="@style/TotalTimeText"
                 android:layout_width="wrap_content"
-                android:layout_height="65dp"
+                android:layout_height="match_parent"
                 android:layout_alignBottom="@+id/verticalSeekBar"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/verticalSeekBar"
@@ -142,8 +140,9 @@ Modifications (MN 2013-12-16):
                 android:visibility="invisible" />
 
             <RelativeLayout
+                android:background="#40ff0000"
                 android:layout_width="57dp"
-                android:layout_height="408dp"
+                android:layout_height="match_parent"
                 android:layout_alignBottom="@+id/verticalSeekBar"
                 android:layout_alignLeft="@+id/verticalSeekBar"
                 android:layout_marginBottom="13.5dp"
@@ -172,14 +171,14 @@ Modifications (MN 2013-12-16):
             <View
                 android:id="@+id/seekbar_background_off"
                 android:layout_width="74dp"
-                android:layout_height="432dp"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@drawable/seekbar_background_off" />
 
             <View
                 android:id="@+id/seekbar_background_on"
                 android:layout_width="74dp"
-                android:layout_height="432dp"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@drawable/seekbar_background_on"
                 android:visibility="invisible" />
@@ -187,7 +186,7 @@ Modifications (MN 2013-12-16):
             <org.fairphone.peaceofmind.ui.VerticalSeekBar
                 android:id="@+id/verticalSeekBar"
                 android:layout_width="81dp"
-                android:layout_height="440dp"
+                android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:max="100"
                 android:padding="0dp"
@@ -196,15 +195,6 @@ Modifications (MN 2013-12-16):
                 android:thumb="@drawable/seekbar_thumb_off"
                 android:thumbOffset="0dp" />
         </RelativeLayout>
-
-        <Button
-            android:id="@+id/helpButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/button_help" />
     </LinearLayout>
-
-    <include layout="@layout/help_layout" />
 
 </FrameLayout>

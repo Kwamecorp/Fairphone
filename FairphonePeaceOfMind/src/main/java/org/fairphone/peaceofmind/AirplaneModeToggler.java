@@ -13,62 +13,77 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+Modifications (MN 2013-12-16):
+- Moved intentExtra label to PeaceOfMindIntents
+- Added isSilentModeOnly verification in isAirplaneModeOn()
+- Removed unused toggleAirplaneMode()
+- Replaced Settings.Global.putInt() by SuperuserHelper wrapper in setAirplaneModeSettings()
+- Added version verification in sendAirplaneModeIntent()
+*/
 package org.fairphone.peaceofmind;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 
-public class AirplaneModeToggler {
-	
-	public static final String PEACE_OF_MIND_TOGGLE = "PEACE_OF_MIND_TOGGLE";
+import org.fairphone.peaceofmind.data.PeaceOfMindStats;
+import org.fairphone.peaceofmind.superuser.SuperuserHelper;
 
-	public static boolean isAirplaneModeOn(Context context) {
+public class AirplaneModeToggler {
+    public static boolean isAirplaneModeOn(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return Settings.System.getInt(context.getContentResolver(), 
-                    Settings.System.AIRPLANE_MODE_ON, 0) != 0;          
+            return Settings.System.getInt(context.getContentResolver(),
+                    Settings.System.AIRPLANE_MODE_ON, 0) != 0;
         } else {
-            return Settings.Global.getInt(context.getContentResolver(), 
-                    Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
-        }       
+            final boolean isSilentModeOnly = PeaceOfMindStats.isSilentModeOnly(PreferenceManager.getDefaultSharedPreferences(context));
+            if (isSilentModeOnly) {
+                // Without su-access given, the app toggles the silent mode
+                final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                return (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT);
+            } else {
+                return Settings.Global.getInt(context.getContentResolver(),
+                        Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
+            }
+        }
     }
-	
-	public static void setAirplaneModeOn(Context context) {
-		setAirplaneModeSettings(context, 1);
-		sendAirplaneModeIntent(context, true);
-	}
-	
-	public static void setAirplaneModeOff(Context context) {
-		setAirplaneModeSettings(context, 0);
-		sendAirplaneModeIntent(context, false);
-	}
-	
-	public static void toggleAirplaneMode(Context context) {
-        boolean isEnabled = isAirplaneModeOn(context);
-        // Toggle airplane mode.
-        setAirplaneModeSettings(context, isEnabled?0:1);
-        // Post an intent to reload.
-        sendAirplaneModeIntent(context, !isEnabled);
+
+    public static void setAirplaneModeOn(Context context) {
+        setAirplaneModeSettings(context, 1);
+        sendAirplaneModeIntent(context, true);
     }
-    
+
+    public static void setAirplaneModeOff(Context context) {
+        setAirplaneModeSettings(context, 0);
+        sendAirplaneModeIntent(context, false);
+    }
+
     private static void setAirplaneModeSettings(Context context, int value) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Settings.System.putInt(
-                      context.getContentResolver(),
-                      Settings.System.AIRPLANE_MODE_ON, value);
+                    context.getContentResolver(),
+                    Settings.System.AIRPLANE_MODE_ON, value);
         } else {
-            Settings.Global.putInt(
-                      context.getContentResolver(),
-                      Settings.Global.AIRPLANE_MODE_ON, value);
-        }       
+            // For API-17, we rely on Superuser. This includes the sendAirplaneModeIntent() call
+            SuperuserHelper.setAirplaneModeSettings(context, value);
+        }
     }
-    
-    private static void sendAirplaneModeIntent(Context context,
-			boolean isEnabled) {
-		Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        intent.putExtra("state", isEnabled);
-        intent.putExtra(PEACE_OF_MIND_TOGGLE, true);
-        context.sendBroadcast(intent);
-	}
+
+    private static void sendAirplaneModeIntent(Context context, boolean isEnabled) {
+        // For API-17, we rely on Superuser in the sendAirplaneModeIntent() call
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+            intent.putExtra(PeaceOfMindIntents.EXTRA_STATE, isEnabled);
+            intent.putExtra(PeaceOfMindIntents.EXTRA_TOGGLE, true);
+            try {
+                context.sendBroadcast(intent);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

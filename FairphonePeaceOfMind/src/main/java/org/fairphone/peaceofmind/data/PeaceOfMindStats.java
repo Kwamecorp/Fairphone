@@ -13,54 +13,72 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+Modifications (MN 2013-12-16):
+- Added PM_STATS_IS_SILENT_MODE_ONLY 
+- Added mIsSilentModeOnly with getter/setter
+*/
+
 package org.fairphone.peaceofmind.data;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class PeaceOfMindStats {
-	public static final long MAX_TIME = 3 * 60 * 60 * 1000;
-	
-	
-	private static final String PM_STATS_LAST_TIME_PINGED = "PM_STATS_LAST_TIME_PINGED";
-	private static final String PM_STATS_IS_IN_PEACE_OF_MIND = "PM_STATS_IS_IN_PEACE_OF_MIND";
-	private static final String PM_STATS_RUN_PAST_TIME = "PM_STATS_RUN_PAST_TIME";
-	private static final String PM_STATS_RUN_TARGET_TIME = "PM_STATS_RUN_TARGET_TIME";
-	private static final String PM_STATS_RUN_START_TIME = "PM_STATS_RUN_START_TIME";
-	
-	public boolean mIsOnPeaceOfMind;
-	public long mLastTimePinged;
-	
-	public PeaceOfMindRun mCurrentRun;
-	
-	public static PeaceOfMindStats getStatsFromSharedPreferences(SharedPreferences preferences){
-		PeaceOfMindStats stats = new PeaceOfMindStats();
-		
-		stats.mIsOnPeaceOfMind = preferences.getBoolean(PM_STATS_IS_IN_PEACE_OF_MIND, false);
-		stats.mLastTimePinged = preferences.getLong(PM_STATS_LAST_TIME_PINGED, 0);
-		
-		if(stats.mIsOnPeaceOfMind){
-			stats.mCurrentRun = new PeaceOfMindRun();
-			stats.mCurrentRun.mPastTime = preferences.getLong(PM_STATS_RUN_PAST_TIME, 0);
-			stats.mCurrentRun.mTargetTime = preferences.getLong(PM_STATS_RUN_TARGET_TIME, 0);
-			stats.mCurrentRun.mTimeStarted = preferences.getLong(PM_STATS_RUN_START_TIME, 0);
-		}
-		
-		return stats;
-	}
+    public static final long MAX_TIME = 3 * 60 * 60 * 1000;
+    private static final String PM_STATS_LAST_TIME_PINGED = "PM_STATS_LAST_TIME_PINGED";
+    private static final String PM_STATS_IS_IN_PEACE_OF_MIND = "PM_STATS_IS_IN_PEACE_OF_MIND";
+    private static final String PM_STATS_IS_SILENT_MODE_ONLY = "PM_STATS_IS_SILENT_MODE_ONLY";
+    private static final String PM_STATS_RUN_PAST_TIME = "PM_STATS_RUN_PAST_TIME";
+    private static final String PM_STATS_RUN_TARGET_TIME = "PM_STATS_RUN_TARGET_TIME";
+    private static final String PM_STATS_RUN_START_TIME = "PM_STATS_RUN_START_TIME";
+    public boolean mIsOnPeaceOfMind;
+    public boolean mIsSilentModeOnly;
+    public long mLastTimePinged;
+    public PeaceOfMindRun mCurrentRun;
 
-	public static void saveToSharedPreferences(PeaceOfMindStats stats, SharedPreferences preferences) {
-		Editor editor = preferences.edit();
-		
-		editor.putBoolean(PM_STATS_IS_IN_PEACE_OF_MIND, stats.mIsOnPeaceOfMind);
-		editor.putLong(PM_STATS_LAST_TIME_PINGED, stats.mLastTimePinged);
-		
-		if(stats.mIsOnPeaceOfMind){
-			editor.putLong(PM_STATS_RUN_PAST_TIME, stats.mCurrentRun.mPastTime);
-			editor.putLong(PM_STATS_RUN_TARGET_TIME, stats.mCurrentRun.mTargetTime);
-			editor.putLong(PM_STATS_RUN_START_TIME, stats.mCurrentRun.mTimeStarted);
-		}
-		
-		editor.commit();
-	}
+    public static PeaceOfMindStats getStatsFromSharedPreferences(SharedPreferences preferences) {
+        PeaceOfMindStats stats = new PeaceOfMindStats();
+
+        stats.mIsOnPeaceOfMind = preferences.getBoolean(PM_STATS_IS_IN_PEACE_OF_MIND, false);
+        stats.mIsSilentModeOnly = preferences.getBoolean(PM_STATS_IS_SILENT_MODE_ONLY, false);
+        stats.mLastTimePinged = preferences.getLong(PM_STATS_LAST_TIME_PINGED, 0);
+
+        if (stats.mIsOnPeaceOfMind) {
+            stats.mCurrentRun = new PeaceOfMindRun();
+            stats.mCurrentRun.mPastTime = preferences.getLong(PM_STATS_RUN_PAST_TIME, 0);
+            stats.mCurrentRun.mTargetTime = preferences.getLong(PM_STATS_RUN_TARGET_TIME, 0);
+            stats.mCurrentRun.mTimeStarted = preferences.getLong(PM_STATS_RUN_START_TIME, 0);
+        }
+
+        return stats;
+    }
+
+    public static void saveToSharedPreferences(PeaceOfMindStats stats, SharedPreferences preferences) {
+        Editor editor = preferences.edit();
+
+        editor.putBoolean(PM_STATS_IS_IN_PEACE_OF_MIND, stats.mIsOnPeaceOfMind);
+        editor.putLong(PM_STATS_LAST_TIME_PINGED, stats.mLastTimePinged);
+
+        if (stats.mIsOnPeaceOfMind) {
+            editor.putLong(PM_STATS_RUN_PAST_TIME, stats.mCurrentRun.mPastTime);
+            editor.putLong(PM_STATS_RUN_TARGET_TIME, stats.mCurrentRun.mTargetTime);
+            editor.putLong(PM_STATS_RUN_START_TIME, stats.mCurrentRun.mTimeStarted);
+        }
+
+        editor.commit();
+    }
+
+    public static boolean isSilentModeOnly(SharedPreferences preferences) {
+        return preferences.getBoolean(PM_STATS_IS_SILENT_MODE_ONLY, false);
+    }
+
+    public static void setSilentModeOnly(boolean isSilentModeOnly, SharedPreferences preferences) {
+        Editor editor = preferences.edit();
+
+        editor.putBoolean(PM_STATS_IS_SILENT_MODE_ONLY, isSilentModeOnly);
+
+        editor.commit();
+    }
 }
