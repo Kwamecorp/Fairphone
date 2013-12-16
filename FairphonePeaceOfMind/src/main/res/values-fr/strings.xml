@@ -20,7 +20,7 @@ Modifications (MN 2013-12-16):
 -->
 <resources>
 
-    <string name="widget_enjoy_some_peace">Missing translation</string>
+    <!--<string name="widget_enjoy_some_peace">Missing translation</string>-->
     <string name="at">De</string>
     <string name="peace">tranquillité</string>
 

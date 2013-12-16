@@ -17,10 +17,10 @@ package org.fairphone.peaceofmind;
 
 public interface IDeviceController {
 
-	void startPeaceOfMind();
+    void startPeaceOfMind();
 
-	void endPeaceOfMind();
+    void endPeaceOfMind();
 
-	void screenOffDevice();
+    void screenOffDevice();
 
 }

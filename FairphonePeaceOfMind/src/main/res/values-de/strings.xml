@@ -20,7 +20,7 @@ Modifications (MN 2013-12-16):
 -->
 <resources>
 
-    <string name="widget_enjoy_some_peace">GENIESSEN SIE DIE RUHE</string>
+    <!--<string name="widget_enjoy_some_peace">GENIESSEN SIE DIE RUHE</string>-->
     <string name="at">IN</string>
     <string name="peace">Ruhe</string>
     

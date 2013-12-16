@@ -34,9 +34,9 @@ public class PeaceOfMindStats {
     private static final String PM_STATS_RUN_TARGET_TIME = "PM_STATS_RUN_TARGET_TIME";
     private static final String PM_STATS_RUN_START_TIME = "PM_STATS_RUN_START_TIME";
     public boolean mIsOnPeaceOfMind;
-    public boolean mIsSilentModeOnly;
     public long mLastTimePinged;
     public PeaceOfMindRun mCurrentRun;
+    private boolean mIsSilentModeOnly;
 
     public static PeaceOfMindStats getStatsFromSharedPreferences(SharedPreferences preferences) {
         PeaceOfMindStats stats = new PeaceOfMindStats();

@@ -20,8 +20,8 @@ Modifications (MN 2013-12-16):
 -->
 <resources>
 
-    <string name="widget_enjoy_some_peace">GENIET VAN DE RUST</string>
-    <string name="at"></string>
+    <!--<string name="widget_enjoy_some_peace">GENIET VAN DE RUST</string>-->
+    <string name="at"/>
     <string name="peace">Rust</string>
     
     <string name="help_string_1">Onze levens worden in toenemende mate met elkaar verbonden en we worden ons steeds bewuster van onze telefoon\n\nWil je offline, al is het voor even?</string>

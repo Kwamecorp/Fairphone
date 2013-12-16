@@ -17,16 +17,13 @@ package org.fairphone.peaceofmind;
 
 import android.content.Context;
 
-public class AirplaneModeDeviceController implements IDeviceController
-{
+public class AirplaneModeDeviceController implements IDeviceController {
 
     private Context mContext;
 
-    AirplaneModeDeviceController(Context context)
-    {
+    AirplaneModeDeviceController(Context context) {
 
-        if (context == null)
-        {
+        if (context == null) {
             throw new IllegalArgumentException("Context cannot be null");
         }
 
@@ -34,28 +31,23 @@ public class AirplaneModeDeviceController implements IDeviceController
     }
 
     @Override
-    public void startPeaceOfMind()
-    {
+    public void startPeaceOfMind() {
 
-        if (!AirplaneModeToggler.isAirplaneModeOn(mContext))
-        {
-             AirplaneModeToggler.setAirplaneModeOn(mContext);
+        if (!AirplaneModeToggler.isAirplaneModeOn(mContext)) {
+            AirplaneModeToggler.setAirplaneModeOn(mContext);
         }
     }
 
     @Override
-    public void endPeaceOfMind()
-    {
+    public void endPeaceOfMind() {
 
-        if (AirplaneModeToggler.isAirplaneModeOn(mContext))
-        {
-             AirplaneModeToggler.setAirplaneModeOff(mContext);
+        if (AirplaneModeToggler.isAirplaneModeOn(mContext)) {
+            AirplaneModeToggler.setAirplaneModeOff(mContext);
         }
     }
 
     @Override
-    public void screenOffDevice()
-    {
+    public void screenOffDevice() {
 
     }
 }

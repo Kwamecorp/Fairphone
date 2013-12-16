@@ -22,8 +22,8 @@ Modifications (MN 2013-12-16):
 package org.fairphone.peaceofmind;
 
 public class PeaceOfMindIntents {
-	public static String PIECE_OF_MIND_APP  = "org.fairphone.peaceofmind.launchapp";
-	public static String STOP_PIECE_OF_MIND = "org.fairphone.peaceofmind.stoppeaceofmind";
-    public static String EXTRA_TOGGLE = "pom_toggle";
-    public static String EXTRA_STATE = "pom_state";
+    public static final String EXTRA_TOGGLE = "pom_toggle";
+    public static final String EXTRA_STATE = "pom_state";
+    public static String PIECE_OF_MIND_APP = "org.fairphone.peaceofmind.launchapp";
+    public static String STOP_PIECE_OF_MIND = "org.fairphone.peaceofmind.stoppeaceofmind";
 }

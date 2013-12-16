@@ -64,17 +64,17 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class PeaceOfMindActivity extends Activity implements VerticalScrollListener, PeaceOfMindApplicationBroadcastReceiver.Listener, OnPreparedListener, OnCompletionListener {
-    public static final String TIMER_TICK = "TIMER_TICK";
-    public static final int MINUTE = 60 * 1000;
-    public static final int HOUR = 60 * MINUTE;
     public static final String BROADCAST_TARGET_PEACE_OF_MIND = "BROADCAST_TARGET_PEACE_OF_MIND";
+    // public static String START_PEACE_OF_MIND = "START_PEACE_OF_MIND";
+    // public static String END_PEACE_OF_MIND = "END_PEACE_OF_MIND";
+    public static final String UPDATE_PEACE_OF_MIND = "UPDATE_PEACE_OF_MIND";
     protected static final String TAG = PeaceOfMindActivity.class.getSimpleName();
+    private static final String TIMER_TICK = "TIMER_TICK";
+    private static final int MINUTE = 60 * 1000;
+    private static final int HOUR = 60 * MINUTE;
     private static final float INITIAL_PERCENTAGE = 0.1f;
-    //    public static String START_PEACE_OF_MIND = "START_PEACE_OF_MIND";
-//    public static String END_PEACE_OF_MIND = "END_PEACE_OF_MIND";
-    public static String UPDATE_PEACE_OF_MIND = "UPDATE_PEACE_OF_MIND";
-    //    public static int count = 0;
-    static Semaphore mSemaphore = new Semaphore(1);
+    // public static int count = 0;
+    private static final Semaphore mSemaphore = new Semaphore(1);
     private boolean mHasRegisterdReceiver = false;
     private TextView mTotalTimeText;
     private LinearLayout mCurrentTimeGroup;
@@ -92,7 +92,6 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     private View mSeekbarBackgroundOn;
     private FrameLayout mHelpHolder;
     private LinearLayout mHelpLayout;
-    private Button mCloseButton;
     private VideoView mVideo;
     private PeaceOfMindApplicationBroadcastReceiver mBroadCastReceiver;
     private SharedPreferences mSharedPreferences;
@@ -245,7 +244,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
         mHelpHolder = (FrameLayout) findViewById(R.id.helpHolder);
         mHelpLayout = (LinearLayout) findViewById(R.id.helpLayout);
-        mCloseButton = (Button) findViewById(R.id.closeButton);
+        final Button mCloseButton = (Button) findViewById(R.id.closeButton);
 
         if (mHelpButton != null) {
             mHelpButton.setOnClickListener(new OnClickListener() {
@@ -384,7 +383,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), MINUTE, pendingIntent);
     }
 
@@ -497,8 +496,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
 
 //        Log.d(TAG, "Updating time to " + timePercentage + " - " + timePast + " target time " + targetTime);
 
-        int finalY = (int) (0.8f * mVerticalSeekBar.getHeight() * timePercentage + (mVerticalSeekBar.getHeight() * INITIAL_PERCENTAGE));
-        return finalY;
+        return (int) (0.8f * mVerticalSeekBar.getHeight() * timePercentage + (mVerticalSeekBar.getHeight() * INITIAL_PERCENTAGE));
     }
 
     private String generateStringTimeFromMillis(long timePast, boolean reset) {
@@ -626,7 +624,6 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             public void run() {
                 if (mVideo.isPlaying()) {
                     mVideo.setBackgroundResource(0);
-                    return;
                 }
 
             }
@@ -638,7 +635,6 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
             public void run() {
                 if (mVideo.isPlaying()) {
                     mVideo.setBackgroundResource(R.drawable.background_on_repeat);
-                    return;
                 }
 
             }

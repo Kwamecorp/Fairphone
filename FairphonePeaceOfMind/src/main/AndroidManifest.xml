@@ -60,7 +60,7 @@ Modifications (MN 2013-12-16):
                 <action android:name="android.media.RINGER_MODE_CHANGED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="org.fairphone.peaceofmind.PeaceOfMindApplicationBroadcastReceiver"></receiver>
+        <receiver android:name="org.fairphone.peaceofmind.PeaceOfMindApplicationBroadcastReceiver"/>
 
         <!-- Widget -->
         <receiver

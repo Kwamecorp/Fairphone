@@ -21,48 +21,47 @@ import android.content.Intent;
 
 public class PeaceOfMindApplicationBroadcastReceiver extends BroadcastReceiver {
 
-	public static String PEACE_OF_MIND_PAST_TIME = "PEACE_OF_MIND_PAST_TIME";
-	public static String PEACE_OF_MIND_TARGET_TIME = "PEACE_OF_MIND_TARGET_TIME";
+    public static final String PEACE_OF_MIND_PAST_TIME = "PEACE_OF_MIND_PAST_TIME";
+    public static final String PEACE_OF_MIND_TARGET_TIME = "PEACE_OF_MIND_TARGET_TIME";
+    public static final String PEACE_OF_MIND_STARTED = "PEACE_OF_MIND_STARTED";
+    public static final String PEACE_OF_MIND_UPDATED = "PEACE_OF_MIND_UPDATED";
+    public static final String PEACE_OF_MIND_ENDED = "PEACE_OF_MIND_ENDED";
+    public static final String PEACE_OF_MIND_TICK = "PEACE_OF_MIND_TICK";
+    private Listener mListener;
 
-	public static String PEACE_OF_MIND_STARTED = "PEACE_OF_MIND_STARTED";
-	public static String PEACE_OF_MIND_UPDATED = "PEACE_OF_MIND_UPDATED";
-	public static String PEACE_OF_MIND_ENDED = "PEACE_OF_MIND_ENDED";
-	public static String PEACE_OF_MIND_TICK = "PEACE_OF_MIND_TICK";
+    public PeaceOfMindApplicationBroadcastReceiver() {
+    }
 
-    public PeaceOfMindApplicationBroadcastReceiver(){}
+    public PeaceOfMindApplicationBroadcastReceiver(Listener listener) {
+        mListener = listener;
+    }
 
-	public interface Listener {
-		void peaceOfMindTick(long pastTime, long targetTime);
+    @Override
+    public void onReceive(Context context, Intent intent) {
 
-		void peaceOfMindStarted(long targetTime);
+        String action = intent.getAction();
 
-		void peaceOfMindEnded();
+        if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TICK.equals(action)) {
+            mListener.peaceOfMindTick(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME),
+                    intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
+        } else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_STARTED.equals(action)) {
+            mListener.peaceOfMindStarted(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
+        } else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_UPDATED.equals(action)) {
+            mListener.peaceOfMindUpdated(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME),
+                    intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
+        } else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED.equals(action)) {
+            mListener.peaceOfMindEnded();
+        }
+    }
 
-		void peaceOfMindUpdated(long currentTime, long newTargetTime);
-	}
+    public interface Listener {
+        void peaceOfMindTick(long pastTime, long targetTime);
 
-	private Listener mListener;
+        void peaceOfMindStarted(long targetTime);
 
-	public PeaceOfMindApplicationBroadcastReceiver(Listener listener) {
-		mListener = listener;
-	}
+        void peaceOfMindEnded();
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-
-		String action = intent.getAction();
-
-		if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TICK.equals(action)) {
-			mListener.peaceOfMindTick(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME),
-									  intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
-		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_STARTED.equals(action)) {
-			mListener.peaceOfMindStarted(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
-		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_UPDATED.equals(action)) {
-			mListener.peaceOfMindUpdated(intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_PAST_TIME),
-					intent.getExtras().getLong(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_TARGET_TIME));
-		} else if (PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED.equals(action)) {
-			mListener.peaceOfMindEnded();
-		}
-	}
+        void peaceOfMindUpdated(long currentTime, long newTargetTime);
+    }
 
 }

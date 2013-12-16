@@ -20,7 +20,7 @@ Modifications (MN 2013-12-16):
 -->
 <resources>
 
-    <string name="widget_enjoy_some_peace">Disfrute de um pouco de paz</string>
+    <!--<string name="widget_enjoy_some_peace">Disfrute de um pouco de paz</string>-->
     <string name="at">Em</string>
     <string name="peace">Paz</string>
     

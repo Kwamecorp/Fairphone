@@ -20,7 +20,7 @@ Modifications (MN 2013-12-16):
 -->
 <resources>
 
-    <string name="widget_enjoy_some_peace">Gaudeix d’una mica de pau</string>
+    <!--<string name="widget_enjoy_some_peace">Gaudeix d’una mica de pau</string>-->
     <string name="at">En</string>
     <string name="peace">Pau</string>
 

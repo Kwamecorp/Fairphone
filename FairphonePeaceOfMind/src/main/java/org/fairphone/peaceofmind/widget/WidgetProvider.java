@@ -108,7 +108,7 @@ public class WidgetProvider extends AppWidgetProvider
     {
         int hours = (int) (time / HOUR);
         int timeInMinutes = (int) (time - hours * HOUR);
-        int minutes = 0;
+        int minutes;
         
         if(hours == 0){
         	minutes = timeInMinutes - MINUTE > 0 ? timeInMinutes / MINUTE : 1;
@@ -166,7 +166,7 @@ public class WidgetProvider extends AppWidgetProvider
     //TODO:Change the magical numbers to dp if possible
 	private int getajustedTextProgress(int progress, int progressText) {
 		long maxTimeSeconds = PeaceOfMindStats.MAX_TIME/1000;
-		int ajustedProgress = 0;
+		int ajustedProgress;
 		if(progress <= (maxTimeSeconds/4)){
 			ajustedProgress = progressText - 40;
 		}
@@ -205,9 +205,8 @@ public class WidgetProvider extends AppWidgetProvider
 
         // iterate through every instance of this widget
         // remember that it can have more than one widget of the same type.
-        for (int i = 0; i < appWidgetIds.length; i++)
-        { 
-            updateUI(context, appWidgetManager, appWidgetIds[i]);
+        for (int appWidgetId : appWidgetIds) {
+            updateUI(context, appWidgetManager, appWidgetId);
         }
 
     }
