@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2013 Fairphone Project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Modifications (MN 2013-12-16):
+- Added License
+- Added airplane_mode_enabled and silent_mode_enabled
+-->
+<resources>
+
+    <!--<string name="widget_enjoy_some_peace">Gaudeix d’una mica de pau</string>-->
+    <string name="at">En</string>
+    <string name="peace">Pau</string>
+
+    <string name="help_string_1">A mesura que les nostres vides estan més connectades, augmenta la nostra dependència dels mòbils\n\nT’agradaria sentir-te desconnectat, ni tan sols per un moment?</string>
+    <string name="help_string_2">El teu telèfon es quedarà en silenci i es desconnectarà del món: sense e-mail, sense xarxes socials, sense missatges i sense trucades</string>
+    <string name="help_string_3">Decideix quant temps t’agradaria desconnectar-te. Fins a 3 hores!\n\nMentrestant pots seguir jugant, llegint o fent servir aplicacions sense connexió</string>
+
+    <string name="enjoy">Gaudeix</string>
+    <string name="some">mica</string>
+    <string name="una">d’una</string>
+    <string name="to_m">de</string>
+    <string name="to_h">de</string>
+    <string name="hour_separator">h</string>
+
+    <string name="peace_on_notification">En pau</string>
+    <string name="peace_off_notification">Peace of Mind està desconnectat</string>
+
+    <string name="btn_off_widget">Tanca</string>
+    <string name="airplane_mode_enabled">Mode d’avió activat</string>
+    <string name="silent_mode_enabled">So desactivat</string>
+
+</resources>

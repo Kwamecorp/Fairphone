@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2013 Fairphone Project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Modifications (MN 2013-12-16):
+- Added License
+- Added airplane_mode_enabled and silent_mode_enabled
+-->
+<resources>
+
+    <!--<string name="widget_enjoy_some_peace">Disfruta de un poco de paz</string>-->
+    <string name="at">En</string>
+    <string name="peace">Paz</string>
+    
+    <string name="help_string_1">A medida que nuestras vidas están más conectadas, aumenta nuestra dependencia de los móviles\n\n¿Te gustaría sentirte desconectado, aunque fuera sólo por un momento?</string>
+    <string name="help_string_2">Tu teléfono se quedará en silencio y se desconectará del mundo: sin e-mail, sin redes sociales, sin mensajes y sin llamadas</string>
+    <string name="help_string_3">Decide cuánto tiempo te gustaría desconectarte. ¡Hasta 3 horas!\n\nMientras, puedes seguir jugando, leyendo o usando aplicaciones sin conexión</string>
+    
+    <string name="enjoy">Disfruta</string>
+    <string name="some">poco</string>
+    <string name="um">un</string>
+    <string name="to_m">de</string>    
+    <string name="to_h">de</string>
+    <string name="hour_separator">h</string>
+    
+    <string name="peace_on_notification">En paz</string>
+    <string name="peace_off_notification">Peace of Mind está desconectado</string>
+
+    <string name="btn_off_widget">Cerrar</string>
+    <string name="airplane_mode_enabled">Modo avión activado</string>
+    <string name="silent_mode_enabled">El sonido está desactivado</string>
+
+</resources>
