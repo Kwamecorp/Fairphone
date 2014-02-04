@@ -28,9 +28,9 @@
     <string name="pick_wallpaper" msgid="5630222540525626723">"Fonds d\'écran"</string>
     <string name="activity_not_found" msgid="217823393239365967">"L\'application n\'est pas installée."</string>
     <string name="widgets_tab_label" msgid="9145860100000983599">"Widgets"</string>
-    <string name="long_press_widget_to_add" msgid="7395697462851217506">"Appuyez de manière prolongée pour ajouter widget."</string>
+    <string name="long_press_widget_to_add" msgid="7395697462851217506">"Appuyez de manière prolongée pour ajouter le widget."</string>
     <string name="market" msgid="2652226429823445833">"Acheter"</string>
-    <string name="external_drop_widget_error" msgid="2285187188524172774">"Impossible de déposer élément sur écran d\'accueil."</string>
+    <string name="external_drop_widget_error" msgid="2285187188524172774">"Impossible de déposer l\'élément sur écran d\'accueil."</string>
     <string name="external_drop_widget_pick_title" msgid="7040647073452295370">"Sélectionnez le widget à créer"</string>
     <string name="rename_folder_label" msgid="5646236631298452787">"Nom du dossier"</string>
     <string name="rename_folder_title" msgid="4544573104191526550">"Renommer le dossier"</string>
@@ -119,9 +119,9 @@
     <string name="last_used">Récentes</string>
     <string name="most_used_apps">Applications\nles plus\nutilisées</string>
     <string name="most_used">Plus utilisées</string>
-    <string name="no_apps_have_been_opened_yet">Les applications ne s\'ouvrent toujours pas? Commencez à utiliser votre téléphone et revenez à cet écran</string>
+    <string name="no_apps_have_been_opened_yet">Toujours pas d'application ouverte ? Commencez à utiliser votre téléphone et revenez à cet écran</string>
     <string name="reset">Réinitialisation</string>
-    <string name="app_switcher_reset_message">Etes-vous sûr?</string>
+    <string name="app_switcher_reset_message">Êtes-vous sûr?</string>
 
     <!-- Settings -->
     <string name="energy_mood">Modulateur d\'ambiance (Energy Mood) dans l\'écran de verrouillage</string>
@@ -138,15 +138,15 @@
     <string name="oobe_quick_access">Quick Access</string>
     <string name="oobe_select_language">Sélectionnez\nla langue</string>
     <string name="oobe_setup_wifi">Configuration\nWi-Fi</string>
-    <string name="oobe_intro_top">Bienvenue! Vous avez dans les mains un téléphone qui met en avant des valeurs sociales. Mais bien sûr vous pouvez faire des appels.</string>
+    <string name="oobe_intro_top">Bienvenue! Vous avez dans les mains un téléphone qui met en avant des valeurs sociales. Mais bien sûr vous pouvez aussi passer des appels.</string>
     <string name="oobe_intro_bottom">Nous alons vous montrer comment l\'utiliser</string>
     <string name="oobe_edge_swipe_title">Glissez votre doigt</string>
     <string name="oobe_edge_swipe_text">de la gauche ou de la droite sans le relever</string>
-    <string name="oobe_open_app_title">Relâcher votre doigt</string>
+    <string name="oobe_open_app_title">Relâchez votre doigt</string>
     <string name="oobe_open_app_text">au-dessus d\'une application pour la démarrer</string>
-    <string name="oobe_edit_drag_intro">Vous pouvez glisser et relâcher les icônes de vos applications et sont ainsi facilement modifiables</string>
+    <string name="oobe_edit_drag_intro">Vous pouvez glisser et relâcher les icônes de vos applications, elles sont ainsi facilement modifiables</string>
     <string name="oobe_edit_drag_add_title">Glissez et relâchez</string>
-    <string name="oobe_edit_drag_add_text">les icônes de la colonne de droite pour les rajouter à vos favorites</string>
+    <string name="oobe_edit_drag_add_text">les icônes vers la colonne de droite pour les rajouter à vos favorites</string>
     <string name="oobe_edit_drag_remove_title">Glissez et relâchez</string>
     <string name="oobe_edit_drag_remove_text">les icônes vers la colonne de gauche pour les retirer de vos favorites</string>
     <string name="oobe_edit_drag_trade_title">Glissez les favorites</string>
