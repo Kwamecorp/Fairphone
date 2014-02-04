@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
 /*
 * Copyright (C) 2008 The Android Open Source Project
@@ -116,9 +116,9 @@
     <!-- Your Apps -->
     <string name="your_apps">Your Apps</string>
     <string name="last_used_apps">Dernières applications utilisées</string>
-    <string name="last_used">Moins utilisée</string>
+    <string name="last_used">Récentes</string>
     <string name="most_used_apps">Applications\nles plus\nutilisées</string>
-    <string name="most_used">Plus utilisée</string>
+    <string name="most_used">Plus utilisées</string>
     <string name="no_apps_have_been_opened_yet">Les applications ne s\'ouvrent toujours pas? Commencez à utiliser votre téléphone et revenez à cet écran</string>
     <string name="reset">Réinitialisation</string>
     <string name="app_switcher_reset_message">Etes-vous sûr?</string>
