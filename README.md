@@ -8,11 +8,11 @@ This is a strong statement in our days and as such the development of this produ
 
 The major selling point of this device is the fact that it is made with borderline no human sufering and without abusing the resources of the planet targeting a long arc of time in which the device owners should not need to replace the device for another. This means that the hardware and the software should be built thinking in long terms.
 
-The device itself will hold an Android os and will compete in the mid level market.
+The device itself will hold an Android OS and will compete in the mid level market.
 
 ##FairphoneOS
 ###Android Distribution overview
-The Android distribution shall be based on the Android 4.2.2 code provided by Google and updated by Mediatek.
+The Android distribution shall be based on the [Android OSP](http://source.android.com/) 4.2.2 code provided by Google and updated by Mediatek.
 
 It has some customizations that are explained below and can be seen on this [video of the FairphoneOS](https://vimeo.com/75009732)
 
