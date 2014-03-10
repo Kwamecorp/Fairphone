@@ -54,7 +54,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class FairphoneUpdater extends Activity {
 
-	protected static final String PREFERENCE_NEW_VERSION_NAME = "PREFERENCE_NEW_VERSION_NAME";
+	public static final String FAIRPHONE_UPDATER_NEW_VERSION_RECEIVED = "FairphoneUpdater.NEW.VERSION.RECEIVED";
+    protected static final String PREFERENCE_NEW_VERSION_NAME = "PREFERENCE_NEW_VERSION_NAME";
 	protected static final String PREFERENCE_NEW_VERSION_NUMBER = "PREFERENCE_NEW_VERSION_NUMBER";
 	protected static final String PREFERENCE_NEW_VERSION_MD5_SUM = "PREFERENCE_NEW_VERSION_MD5_SUM";
 	protected static final String PREFERENCE_NEW_VERSION_URL = "PREFERENCE_NEW_VERSION_URL";
@@ -95,6 +96,8 @@ public class FairphoneUpdater extends Activity {
 	private DownloadManager mDownloadManager;
 	private DownloadBroadCastReceiver mDownloadBroadCastReceiver;
 	private long mLatestUpdateDownloadId;
+    
+	private BroadcastReceiver newVersionbroadcastReceiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +118,28 @@ public class FairphoneUpdater extends Activity {
 		mCurrentState = getCurrentUpdaterState();
 
 		setupInstallationReceivers();
+		
+	    setupBroadcastReceiver();
 
 		// TODO : remove this
 		Intent i = new Intent(this, UpdaterService.class);
 		startService(i);
 	}
+   
+	protected void setupBroadcastReceiver() {
+        newVersionbroadcastReceiver = new BroadcastReceiver(){
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+
+                if (FairphoneUpdater.FAIRPHONE_UPDATER_NEW_VERSION_RECEIVED.equals(action)) {
+                    mLatestVersion = getLastestVersion();
+                    updateNewVersionLayout();
+                }  
+            }    
+        };
+    }
 
 	private Version getLastestVersion() {
 		Version latest = null;
@@ -223,9 +243,13 @@ public class FairphoneUpdater extends Activity {
 		registerBroadCastReceiver();
 		// check current state
 		mCurrentState = getCurrentUpdaterState();
-
-		if (mLatestVersion == null) {
-			mLatestVersion = VersionParserHelper.getLastestVersion(this);
+		
+		mLatestVersion = VersionParserHelper.getLastestVersion(this);
+		if (mLatestVersion != null) {
+		    if(!mLatestVersion.isNewerVersionThan(mDeviceVersion)){  
+		        mLatestVersion.deleteFromSharedPreferences(this);
+		        mLatestVersion = null;   
+		    }
 		}
 
 		mViewCurrentVersionTitle.setText(mDeviceVersion.getName());
@@ -280,7 +304,11 @@ public class FairphoneUpdater extends Activity {
 		}
 
 		// check to see if there is a new version to install
-		if (mLatestVersion != null) {
+		updateNewVersionLayout();
+	}
+
+    protected void updateNewVersionLayout() {
+        if (mLatestVersion != null) {
 			mLatestGroupLla.setVisibility(View.VISIBLE);
 			mViewUpdateButton.setVisibility(View.VISIBLE);
 
@@ -295,7 +323,7 @@ public class FairphoneUpdater extends Activity {
 		} else {
 			mLatestGroupLla.setVisibility(View.GONE);
 		}
-	}
+    }
 
 	private UpdaterState getCurrentUpdaterState() {
 
@@ -555,6 +583,8 @@ public class FairphoneUpdater extends Activity {
 		} else {
 			changeState(UpdaterState.NORMAL);
 		}
+		
+		cursor.close();
 	}
 
 	private void setupInstallationReceivers() {
@@ -566,10 +596,13 @@ public class FairphoneUpdater extends Activity {
 	private void registerBroadCastReceiver() {
 		registerReceiver(mDownloadBroadCastReceiver, new IntentFilter(
 				DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+		
+		registerReceiver(newVersionbroadcastReceiver, new IntentFilter(FairphoneUpdater.FAIRPHONE_UPDATER_NEW_VERSION_RECEIVED));
 	}
 
 	private void unregisterBroadCastReceiver() {
 		unregisterReceiver(mDownloadBroadCastReceiver);
+		unregisterReceiver(newVersionbroadcastReceiver);
 	}
 
 	private class DownloadBroadCastReceiver extends BroadcastReceiver {

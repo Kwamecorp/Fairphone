@@ -63,10 +63,8 @@ public class UpdaterService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		mSharedPreferences = getApplicationContext().getSharedPreferences(FairphoneUpdater.FAIRPHONE_UPDATER_PREFERENCES, MODE_PRIVATE);
-		
-		if(isFileStillValid()){
-			checkVersionValidation(getApplicationContext());
-		} else if(hasInternetConnection() ){
+
+	    if(hasInternetConnection() ){
 			// remove the old file if its still there for some reason
 			removeLatestFile(getApplicationContext());
 	
@@ -115,12 +113,29 @@ public class UpdaterService extends Service {
 		return null;
 	}
 
-	public void startDownloadLatest() {    
-	    Resources resources = getApplicationContext().getResources();
+	public void startDownloadLatest() {
+		if(hasConnection()){
+			Resources resources = getApplicationContext().getResources();
 	            
-		// set the download for the latest version on the download manager
-		Request request = createDownloadRequest(resources.getString(R.string.downloadUrl), resources.getString(R.string.versionFilename) + resources.getString(R.string.versionFilename_zip));
-		mLatestFileDownloadId = mDownloadManager.enqueue(request);
+			// set the download for the latest version on the download manager
+			Request request = createDownloadRequest(resources.getString(R.string.downloadUrl), resources.getString(R.string.versionFilename) + resources.getString(R.string.versionFilename_zip));
+			mLatestFileDownloadId = mDownloadManager.enqueue(request);
+		}
+	}
+
+	private boolean hasConnection() {
+		return isWiFiEnabled();
+	}
+	
+	private boolean isWiFiEnabled() {
+
+		ConnectivityManager manager = (ConnectivityManager) getApplicationContext()
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+				.isConnectedOrConnecting();
+
+		return isWifi;
 	}
 
 	private void setNotification() {
@@ -153,7 +168,10 @@ public class UpdaterService extends Service {
 		
 		// Add notification
 		manager.notify(0, notificationWhileRunnig);
-
+		
+		//to update the activity
+		Intent updateIntent = new Intent(FairphoneUpdater.FAIRPHONE_UPDATER_NEW_VERSION_RECEIVED);
+        sendBroadcast(updateIntent);
 	}
 
 	private Request createDownloadRequest(String url, String fileName) {

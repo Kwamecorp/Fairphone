@@ -189,4 +189,13 @@ public class Version {
 
 		return ints;
 	}
+
+    public void deleteFromSharedPreferences(Context context) {
+        setNumber(null);
+        setName(null);
+        setAndroid(null);
+        setDownloadLink(null);
+        setMd5Sum(null);
+        saveToSharedPreferences(context);
+    }
 }

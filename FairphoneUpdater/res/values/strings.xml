@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Fairphone Updater</string>
     <string name="downloadUrl">http://www.fairphone.com/ota/latest.zip</string>
-    <!-- <string name="downloadUrl">http://www.kwamecorp.com/dev/latest.zip</string>  -->
     <string name="versionFilename">latest</string>
     <string name="versionFilename_zip">.zip</string>
 	<string name="versionFilename_xml">.xml</string>
