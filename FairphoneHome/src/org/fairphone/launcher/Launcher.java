@@ -17,29 +17,10 @@
 
 package org.fairphone.launcher;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.fairphone.launcher.DropTarget.DragObject;
 import org.fairphone.launcher.edgeswipe.EdgeSwipeAppMenuHelper;
 import org.fairphone.launcher.edgeswipe.edit.EditFavoritesActivity;
+import org.fairphone.launcher.edgeswipe.edit.FavoritesStorageHelper;
 import org.fairphone.launcher.edgeswipe.ui.EdgeSwipeInterceptorViewListener;
 import org.fairphone.launcher.gappsinstaller.GappsInstallerHelper;
 import org.fairphone.oobe.OOBEActivity;
@@ -128,9 +109,28 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Advanceable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Default launcher application.
@@ -2432,6 +2432,9 @@ public final class Launcher extends Activity implements View.OnClickListener,
 					| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 			startActivity(intent);
 
+			FavoritesStorageHelper.updateFavorites(this, appInfo.componentName);
+            mAppMenuHelper.updateIcons();
+
 			AppDiscoverer.getInstance().applicationRemoved(
 					appInfo.componentName);
 
@@ -4091,7 +4094,13 @@ public final class Launcher extends Activity implements View.OnClickListener,
 		for (ApplicationRunInformation appToRemove : appsToRemove) {
 			AppDiscoverer.getInstance().applicationRemoved(
 					appToRemove.getComponentName());
-		}
+			
+			FavoritesStorageHelper.updateFavorites(this, appToRemove.getComponentName());
+        }
+        
+        if(!appsToRemove.isEmpty()){
+            mAppMenuHelper.updateIcons();
+        }
 	}
 
 	/**

@@ -15,8 +15,6 @@
  */
 package org.fairphone.launcher.edgeswipe.edit;
 
-import java.util.ArrayList;
-
 import org.fairphone.launcher.ApplicationInfo;
 import org.fairphone.launcher.R;
 
@@ -25,7 +23,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Favorites storage helper class implements methods to convert a string array
@@ -42,6 +41,8 @@ public abstract class FavoritesStorageHelper
     private static final String FAVORITES_APPS_KEY = "FAVORITES_APPS_KEY";
 
 	private static final String TAG = "FavoritesStorageHelper";
+	
+	private static int MAX_FAVORITE_APPS = 4;
 
     /**
      * Load the favorites apps from the shared preferences and get the Android
@@ -184,6 +185,19 @@ public abstract class FavoritesStorageHelper
 		editor.putString(FAVORITES_APPS_KEY, null);
 		editor.commit();
 		
-		loadSelectedApps(context, 4);
+		loadSelectedApps(context, MAX_FAVORITE_APPS);
 	}
+	
+	public static void updateFavorites(Context context, ComponentName componentName) {
+        ApplicationInfo[] currentApps = loadSelectedApps(context, MAX_FAVORITE_APPS);
+        
+        for (ApplicationInfo appInfo : currentApps) {
+            if(appInfo != null){
+                if(appInfo.componentName != null && appInfo.componentName.equals(componentName)){
+                    appInfo = null;
+                }
+            }
+        }
+        storeSelectedApps(context, currentApps);
+    }
 }
