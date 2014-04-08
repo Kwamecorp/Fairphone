@@ -119,7 +119,7 @@
     <string name="last_used">Récentes</string>
     <string name="most_used_apps">Applications\nles plus\nutilisées</string>
     <string name="most_used">Plus utilisées</string>
-    <string name="no_apps_have_been_opened_yet">Toujours pas d'application ouverte ? Commencez à utiliser votre téléphone et revenez à cet écran</string>
+    <string name="no_apps_have_been_opened_yet">Toujours pas d\'application ouverte ? Commencez à utiliser votre téléphone et revenez à cet écran</string>
     <string name="reset">Réinitialisation</string>
     <string name="app_switcher_reset_message">Êtes-vous sûr?</string>
 
