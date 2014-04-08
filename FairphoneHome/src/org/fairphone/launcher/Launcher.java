@@ -1037,6 +1037,12 @@ public final class Launcher extends Activity implements View.OnClickListener,
 		// broadcast receivers for the appSwitcher
 		setupBroadcastReceivers();
 		
+		// setup favorites
+		if(mAppMenuHelper == null){
+            setupFavoriteApps();
+        }else{
+            mAppMenuHelper.updateIcons();
+        }
 	}
 
 	@Override
