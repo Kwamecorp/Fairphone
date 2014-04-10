@@ -69,7 +69,7 @@
     
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 	<uses-permission android:name="android.permission.REBOOT"/>
-    <!-- Internet access is required for sending crash reports with ACRA -->
+    <!-- Internet access is required for sending crash reports with Crashlytics -->
     <uses-permission android:name="android.permission.INTERNET" />
     
     <application
@@ -210,5 +210,6 @@
 
         <meta-data android:name="android.nfc.disable_beam_default"
                        android:value="true" />
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="743d6f60e29372e7b75de8137a5585979710dd7a"/>
     </application>
 </manifest>
