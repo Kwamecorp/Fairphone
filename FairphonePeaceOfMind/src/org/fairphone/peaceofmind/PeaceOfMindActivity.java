@@ -15,10 +15,13 @@
  */
 package org.fairphone.peaceofmind;
 
+import com.flurry.android.FlurryAgent;
+
 import org.fairphone.fairphonepeaceofmindapp.R;
 import org.fairphone.peaceofmind.data.PeaceOfMindStats;
 import org.fairphone.peaceofmind.ui.VerticalScrollListener;
 import org.fairphone.peaceofmind.ui.VerticalSeekBar;
+import org.fairphone.peaceofmind.utils.FlurryHelper;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -469,7 +472,8 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
         intent.setAction(PeaceOfMindActivity.UPDATE_PEACE_OF_MIND);
 
         intent.putExtra(PeaceOfMindActivity.BROADCAST_TARGET_PEACE_OF_MIND, targetTime);
-
+        
+        FlurryAgent.logEvent(FlurryHelper.PEACE_OF_MIND_SET_TIME, FlurryHelper.getInstance().setFlurryParams("Target Time", "" + targetTime, true));
         sendBroadcast(intent);
     }
 
@@ -587,6 +591,7 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     @Override
     public synchronized void peaceOfMindStarted(long targetTime)
     {
+        FlurryAgent.logEvent(FlurryHelper.PEACE_OF_MIND_STARTED, true);
     	try {
 			mSemaphore.tryAcquire(1, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
@@ -770,5 +775,17 @@ public class PeaceOfMindActivity extends Activity implements VerticalScrollListe
     public void peaceOfMindUpdated(long pastTime, long newTargetTime)
     {
         updateTextForNewTime(pastTime, newTargetTime);
+    }
+    
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryHelper.startFlurrySession(this);
+    }
+    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryHelper.endFlurrySession(this);
     }
 }

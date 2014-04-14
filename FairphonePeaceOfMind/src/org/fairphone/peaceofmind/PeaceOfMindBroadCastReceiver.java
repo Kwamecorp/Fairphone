@@ -15,9 +15,12 @@
  */
 package org.fairphone.peaceofmind;
 
+import com.flurry.android.FlurryAgent;
+
 import org.fairphone.fairphonepeaceofmindapp.R;
 import org.fairphone.peaceofmind.data.PeaceOfMindRun;
 import org.fairphone.peaceofmind.data.PeaceOfMindStats;
+import org.fairphone.peaceofmind.utils.FlurryHelper;
 import org.fairphone.peaceofmind.widget.WidgetProvider;
 
 import android.app.Notification;
@@ -258,6 +261,14 @@ public class PeaceOfMindBroadCastReceiver extends BroadcastReceiver {
 		PeaceOfMindStats.saveToSharedPreferences(mCurrentStats, mSharedPreferences);
 
 		mDeviceController.endPeaceOfMind();
+		
+		FlurryHelper.startFlurrySession(mContext);
+		FlurryAgent.endTimedEvent(FlurryHelper.PEACE_OF_MIND_STARTED);
+		
+		if(wasInterrupted){
+		    FlurryAgent.logEvent(FlurryHelper.PEACE_OF_MIND_STOPPED);
+		}
+		FlurryHelper.endFlurrySession(mContext);
 		
 		Intent endIntent = new Intent(PeaceOfMindApplicationBroadcastReceiver.PEACE_OF_MIND_ENDED);
 		mContext.sendBroadcast(endIntent);
