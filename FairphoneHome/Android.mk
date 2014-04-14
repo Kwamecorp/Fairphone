@@ -19,7 +19,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_STATIC_JAVA_LIBRARIES := android-common android-support-v4 fairphonelib roottoolslib
+LOCAL_STATIC_JAVA_LIBRARIES := android-common android-support-v4 fairphonelib roottoolslib flurrylib
 LOCAL_JAVA_LIBRARIES += mediatek-framework
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src) $(call all-renderscript-files-under, src)
@@ -36,7 +36,7 @@ include $(BUILD_PACKAGE)
 ##################################################
 include $(CLEAR_VARS)
 
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := fairphonelib:libs/crashlytics.jar roottoolslib:libs/RootTools-3.3.jar
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := fairphonelib:libs/crashlytics.jar roottoolslib:libs/RootTools-3.3.jar flurrylib:libs/flurryAnalytics_3.4.0.jar
 
 include $(BUILD_MULTI_PREBUILT)
 

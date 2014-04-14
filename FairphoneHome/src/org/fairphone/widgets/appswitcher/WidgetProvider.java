@@ -15,11 +15,11 @@
  */
 package org.fairphone.widgets.appswitcher;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.flurry.android.FlurryAgent;
 
 import org.fairphone.launcher.Launcher;
 import org.fairphone.launcher.R;
+import org.fairphone.launcher.util.FlurryHelper;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -28,15 +28,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WidgetProvider extends AppWidgetProvider
 {
@@ -62,6 +63,7 @@ public class WidgetProvider extends AppWidgetProvider
     {
         // Widget instance is removed from the homescreen
         Log.d(TAG, "onDeleted - " + appWidgetIds);
+        FlurryAgent.logEvent(FlurryHelper.YOUR_APPS_WIDGET_REMOVED);
     }
 
     @Override

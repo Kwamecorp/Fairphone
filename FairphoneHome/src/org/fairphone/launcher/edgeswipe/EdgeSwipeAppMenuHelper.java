@@ -15,12 +15,15 @@
  */
 package org.fairphone.launcher.edgeswipe;
 
+import com.flurry.android.FlurryAgent;
+
 import org.fairphone.launcher.ApplicationInfo;
 import org.fairphone.launcher.DragController;
 import org.fairphone.launcher.Launcher;
 import org.fairphone.launcher.R;
 import org.fairphone.launcher.edgeswipe.edit.FavoritesStorageHelper;
 import org.fairphone.launcher.edgeswipe.ui.EdgeSwipeInterceptorViewListener;
+import org.fairphone.launcher.util.FlurryHelper;
 import org.fairphone.launcher.util.KWMathUtils;
 
 import android.content.ActivityNotFoundException;
@@ -47,7 +50,6 @@ import android.widget.TextView;
 
 public class EdgeSwipeAppMenuHelper implements EdgeSwipeInterceptorViewListener
 {
-
     private static final String TAG = EdgeSwipeAppMenuHelper.class.getSimpleName();
 
     private static int MAX_FAVORITE_APPS = 4;
@@ -508,6 +510,7 @@ public class EdgeSwipeAppMenuHelper implements EdgeSwipeInterceptorViewListener
             
             prevVisibleIcon = -1;
             
+            FlurryAgent.logEvent(FlurryHelper.LAUNCH_EDGE_MENU_EDIT_FAVORITES);
 	    	mLauncher.startEditFavorites();
     	}
     	
@@ -557,14 +560,17 @@ public class EdgeSwipeAppMenuHelper implements EdgeSwipeInterceptorViewListener
         {
             if (prevVisibleIcon == 2)
             {
+                FlurryAgent.logEvent(FlurryHelper.LAUNCH_EDGE_MENU_ALL_APPS);
                 mLauncher.showAllApps(true);
             }
             else
             {
 				if (icons[prevVisibleIcon] != null && icons[prevVisibleIcon].intent != null) {
+				    FlurryAgent.logEvent(FlurryHelper.LAUNCH_EDGE_MENU_APP, FlurryHelper.getInstance().setFlurryParams(""+(prevVisibleIcon + 1), icons[prevVisibleIcon].selectedViewName.getText().toString(), true));
 					mLauncher.startActivity(this.getMenuContainerView(), icons[prevVisibleIcon].intent, null);
 				} else {
 					//to avoid the addition of fairphone home launcher to appSwitcher
+                    FlurryAgent.logEvent(FlurryHelper.LAUNCH_EDGE_MENU_EDIT_FAVORITES_FROM_ITEM, FlurryHelper.getInstance().setFlurryParams(""+(prevVisibleIcon + 1), FlurryHelper.EDGE_SWIPE_EMPTY_SLOT, true));
 					mLauncher.startEditFavorites();
 				}
             }
@@ -574,6 +580,8 @@ public class EdgeSwipeAppMenuHelper implements EdgeSwipeInterceptorViewListener
             e.printStackTrace();
         }
     }
+
+    
 
     private void setBackgroundExitAnimation()
     {

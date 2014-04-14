@@ -17,12 +17,15 @@
 
 package org.fairphone.launcher;
 
+import com.flurry.android.FlurryAgent;
+
 import org.fairphone.launcher.DropTarget.DragObject;
 import org.fairphone.launcher.edgeswipe.EdgeSwipeAppMenuHelper;
 import org.fairphone.launcher.edgeswipe.edit.EditFavoritesActivity;
 import org.fairphone.launcher.edgeswipe.edit.FavoritesStorageHelper;
 import org.fairphone.launcher.edgeswipe.ui.EdgeSwipeInterceptorViewListener;
 import org.fairphone.launcher.gappsinstaller.GappsInstallerHelper;
+import org.fairphone.launcher.util.FlurryHelper;
 import org.fairphone.oobe.OOBEActivity;
 import org.fairphone.widgets.appswitcher.AppDiscoverer;
 import org.fairphone.widgets.appswitcher.ApplicationRunInformation;
@@ -604,6 +607,7 @@ public final class Launcher extends Activity implements View.OnClickListener,
 
 			@Override
 			public void onReceive(Context context, Intent intent) {
+			    FlurryAgent.logEvent(FlurryHelper.YOUR_APPS_LAUNCH_ALL_APPS);
 				Log.i(TAG,"Received a call from widget....Show all apps");
 				showAllApps(true);
 			}
@@ -638,6 +642,7 @@ public final class Launcher extends Activity implements View.OnClickListener,
 				if (launchIntent != null) {
 					launchIntent.setComponent(new ComponentName(packageName,
 							className));
+					FlurryAgent.logEvent(FlurryHelper.YOUR_APPS_LAUNCH_APP);
 					startActivity(null, launchIntent, "edgeSwipeLaunch");
 				}
 			}
@@ -870,8 +875,8 @@ public final class Launcher extends Activity implements View.OnClickListener,
 		mWaitingForResult = false;
 
 		if (requestCode == REQUEST_EDIT_FAVORITES) {
+	        FlurryAgent.endTimedEvent(FlurryHelper.EDIT_FAVORITES_CONFIG);
 			mAppMenuHelper.updateIcons();
-
 			mWaitingForResult = false;
 			return;
 		}
@@ -1524,7 +1529,11 @@ public final class Launcher extends Activity implements View.OnClickListener,
 			mWorkspace.addInScreen(launcherInfo.hostView, container, screen,
 					cellXY[0], cellXY[1], launcherInfo.spanX,
 					launcherInfo.spanY, isWorkspaceLocked());
-
+			if(!TextUtils.isEmpty(appWidgetInfo.label) && appWidgetInfo.label.equals(getResources().getString(R.string.app_switcher_name))){
+			    FlurryAgent.logEvent(FlurryHelper.ADD_YOUR_APPS_WIDGET);
+			}else if(appWidgetInfo.provider != null && appWidgetInfo.provider.equals(FlurryHelper.PEACE_OF_MIND_WIDGET_COMPONENT)){
+                FlurryAgent.logEvent(FlurryHelper.PEACE_OF_MIND_WIDGET_ADDED);
+			}
 			addWidgetToAutoAdvanceIfNeeded(launcherInfo.hostView, appWidgetInfo);
 		}
 		resetAddInfo();
@@ -1697,6 +1706,9 @@ public final class Launcher extends Activity implements View.OnClickListener,
 	}
 
 	public void removeAppWidget(LauncherAppWidgetInfo launcherInfo) {
+	    if(launcherInfo.providerName != null && launcherInfo.providerName.equals(FlurryHelper.PEACE_OF_MIND_WIDGET_COMPONENT)){
+            FlurryAgent.logEvent(FlurryHelper.PEACE_OF_MIND_WIDGET_REMOVED);
+        }
 		removeWidgetToAutoAdvance(launcherInfo.hostView);
 		launcherInfo.hostView = null;
 	}
@@ -4407,12 +4419,14 @@ public final class Launcher extends Activity implements View.OnClickListener,
 									saveAppSwitcherData();
 
 									updateAppSwitcherWidgets();
+									FlurryAgent.logEvent(FlurryHelper.YOUR_APPS_RESET_OK);
 								}
 							})
 					.setNegativeButton(getString(android.R.string.cancel),
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
+								    FlurryAgent.logEvent(FlurryHelper.YOUR_APPS_RESET_CANCEL);
 								}
 							});
 			// Create the AlertDialog object and return it
@@ -4424,7 +4438,8 @@ public final class Launcher extends Activity implements View.OnClickListener,
 
 		startActivityForResult(new Intent(this, EditFavoritesActivity.class),
 				REQUEST_EDIT_FAVORITES);
-
+		FlurryAgent.logEvent(FlurryHelper.EDIT_FAVORITES_CONFIG);
+		
 		startOOBEActivityOnFirstUse(SHOW_OOBE_EDIT_FAVORITES,
 				OOBEActivity.OOBE_EDIT_FAVORITES_TUTORIAL);
 	}
@@ -4494,7 +4509,18 @@ public final class Launcher extends Activity implements View.OnClickListener,
 				oobeTutorial);
 		startActivity(oobeEditFavoritesIntent);
 	}
-
+	
+	@Override
+	protected void onStart() {
+        super.onStart();
+        FlurryHelper.startFlurrySession(this);
+    }
+	
+	@Override
+	protected void onStop() {
+        super.onStop();
+        FlurryHelper.endFlurrySession(this);
+    }
 }
 
 interface LauncherTransitionable {

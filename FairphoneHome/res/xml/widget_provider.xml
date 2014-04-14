@@ -3,7 +3,7 @@
     android:initialLayout="@layout/fp_app_switcher"
     android:minHeight="500dp"
     android:minWidth="300dp"
-    android:label="AppWidget"
+    android:label="@string/app_switcher_name"
     android:previewImage="@drawable/appswicther_widget_icon"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0" />

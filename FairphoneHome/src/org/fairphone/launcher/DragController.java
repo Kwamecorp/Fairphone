@@ -17,9 +17,10 @@
 
 package org.fairphone.launcher;
 
-import java.util.ArrayList;
+import com.flurry.android.FlurryAgent;
 
 import org.fairphone.launcher.edgeswipe.ui.EdgeSwipeInterceptorViewListener;
+import org.fairphone.launcher.util.FlurryHelper;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,7 +31,6 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -39,11 +39,14 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.ArrayList;
+
 /**
  * Class for initiating a drag within a view or across multiple views.
  */
 public class DragController {
-	private static final double EDGE_SWIPE_SWIPE_SPEED_LIMIT = 1.5;
+
+    private static final double EDGE_SWIPE_SWIPE_SPEED_LIMIT = 1.5;
 
 	private static final String TAG = "Launcher.DragController";
 
@@ -232,6 +235,7 @@ public class DragController {
 	private void startMenuSelection(MotionEvent ev) {
 		for (EdgeSwipeInterceptorViewListener listener : mEdgeSwipeListeners) {
 			listener.onSelectionStarted(ev.getX(), ev.getY());
+			FlurryAgent.logEvent(FlurryHelper.SHOW_EDGE_MENU, true);
 		}
 	}
 
@@ -244,6 +248,7 @@ public class DragController {
 	private void stopMenuSelection(MotionEvent ev) {
 		for (EdgeSwipeInterceptorViewListener listener : mEdgeSwipeListeners) {
 			listener.onSelectionFinished(ev.getX(), ev.getY());
+			FlurryAgent.endTimedEvent(FlurryHelper.SHOW_EDGE_MENU);
 		}
 
 		mCurrentState = MovementState.NORMAL;
