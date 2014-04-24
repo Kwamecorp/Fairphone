@@ -194,5 +194,8 @@
 	<string name="google_apps_download_error">Fehler beim Herunterladen der Dateien. Bitte versuchen Sie es erneut.</string>
 	<string name="google_apps_connection_title">WLAN deaktiviert</string>
 	<string name="google_apps_connection_description">Die Datei, die Sie herunterladen möchten, ist zu groß für mobile Verbindungen (~100 MB). Bitte aktivieren Sie die WLAN-Verbindung und versuchen Sie es erneut.</string>
+	<string name="google_apps_reinstall_request_title">Kleine Erinnerungshilfe</string>
+    <string name="google_apps_reinstall_description">Um den Play Store auf deinem Telefon neu zu installieren, musst du zu all deinen Apps gehen, dort den Reiter Widgets anwählen, um von dort den Google Apps-Installer wieder auf dein Startfeld zu ziehen.</string>
+	
 	
 </resources>

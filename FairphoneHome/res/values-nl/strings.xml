@@ -194,5 +194,7 @@
 	<string name="google_apps_download_error">Fout bij het downloaden van de bestanden. Probeer het opnieuw.</string>
 	<string name="google_apps_connection_title">Wi-Fi niet beschikbaar</string>
 	<string name="google_apps_connection_description">Het bestand dat je probeert te downloaden is te groot voor mobiele verbindingen (~100MB). Breng de Wi-Fi verbinding tot stand en probeer het opnieuw.</string>
+	<string name="google_apps_reinstall_request_title">Herinnering</string>
+    <string name="google_apps_reinstall_description">Om de Play store te herinstalleren, ga naar All Apps, Widgets en sleep de Google App Installer widget naar je startpaneel en selecteer deze.</string>
 	
 </resources>

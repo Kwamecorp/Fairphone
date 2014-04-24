@@ -207,5 +207,8 @@
 	<string name="google_apps_download_error">Erro ao descarregar os ficheiros. Por favor tente outra vez.</string>
 	<string name="google_apps_connection_title">Wi-Fi desligado</string>
 	<string name="google_apps_connection_description">O ficheiro que está a tentar descarregar é muito grande para ligações móveis (~100mb). Por favor ligue-se ao Wi-Fi e tente outra vez.</string>
+	<string name="google_apps_reinstall_request_title">Não esquecer</string>
+    <string name="google_apps_reinstall_description">Para voltar a instalar a Play store no seu telefone, deve ir ao All Apps, Widgets, e depois arrastar o Instalador das Google Apps para o painel do Home e selecioná-lo.</string>
+	
 	
 </resources>
