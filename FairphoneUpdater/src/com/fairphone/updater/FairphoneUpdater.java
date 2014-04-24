@@ -69,6 +69,7 @@ public class FairphoneUpdater extends Activity {
 	private static final String PREFERENCE_CURRENT_UPDATER_STATE = "CurrentUpdaterState";
 	private static final String PREFERENCE_DOWNLOAD_ID = "LatestUpdateDownloadId";
 	public static final String FAIRPHONE_UPDATER_PREFERENCES = "FairphoneUpdaterPreferences";
+    private static final String GAPPS_REINSTALATION = "GAPPS_REINSTALATION_REQUEST";
 
 	public static enum UpdaterState {
 		NORMAL, DOWNLOAD, PREINSTALL
@@ -434,6 +435,11 @@ public class FairphoneUpdater extends Activity {
 			e.printStackTrace();
 		}
 
+		// send broadcast intent
+		Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(FairphoneUpdater.GAPPS_REINSTALATION);
+        this.sendBroadcast(broadcastIntent);
+		
 		// reboot the device into recovery
 		((PowerManager) getSystemService(POWER_SERVICE)).reboot("recovery");
 	}
