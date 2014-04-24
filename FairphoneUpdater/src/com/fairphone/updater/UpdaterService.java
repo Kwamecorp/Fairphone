@@ -16,6 +16,14 @@
 
 package com.fairphone.updater;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeoutException;
+
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.app.Notification;
@@ -37,12 +45,12 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.exceptions.RootDeniedException;
+import com.stericson.RootTools.execution.CommandCapture;
+import com.stericson.RootTools.execution.Shell;
 
 public class UpdaterService extends Service {
 
@@ -62,6 +70,9 @@ public class UpdaterService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
+	    // remove the logs
+	    clearDataLogs();
+	    
 		mSharedPreferences = getApplicationContext().getSharedPreferences(FairphoneUpdater.FAIRPHONE_UPDATER_PREFERENCES, MODE_PRIVATE);
 
 	    if(hasInternetConnection() ){
@@ -76,6 +87,22 @@ public class UpdaterService extends Service {
 		
 		return Service.START_NOT_STICKY;
 	}
+	
+    protected void clearDataLogs(){
+        try
+        {
+            Log.d(UpdaterService.class.getSimpleName(), "Clearing dump log data...");
+            Shell.runCommand(new CommandCapture(0, "rm /data/log_other_mode/*_log"));
+        } catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (TimeoutException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 	private void removeLatestFile(Context context) {
         VersionParserHelper.removeFiles(context);
