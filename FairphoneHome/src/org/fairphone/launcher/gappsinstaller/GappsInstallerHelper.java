@@ -511,9 +511,22 @@ public class GappsInstallerHelper {
 	public void pushFileToRecovery(String fileName) {
 		if (RootTools.isAccessGiven()) {
 			// set the command for the recovery
-			Process p;
+			
 			try {
-				p = Runtime.getRuntime().exec("su");
+			     Shell.runRootCommand(new CommandCapture(0,
+			            "rm -f /cache/recovery/command"));
+			    
+	             Shell.runRootCommand(new CommandCapture(0,
+	                        "rm -f /cache/recovery/extendedcommand"));
+	             
+	             Shell.runRootCommand(new CommandCapture(0,
+	                     "echo '--wipe_cache' >> /cache/recovery/command"));
+	             
+	             Shell.runRootCommand(new CommandCapture(0,
+	                     "echo '--update_package=/" + RECOVERY_PATH
+	                        + fileName + "' >> /cache/recovery/command"));
+				
+	             /*p = Runtime.getRuntime().exec("su");
 
 				DataOutputStream os = new DataOutputStream(p.getOutputStream());
 				os.writeBytes("rm -f /cache/recovery/command\n");
@@ -527,14 +540,22 @@ public class GappsInstallerHelper {
 				os.writeBytes("sync\n");
 				os.writeBytes("exit\n");
 				os.flush();
-				p.waitFor();
+				p.waitFor();*/
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+			} catch (TimeoutException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (RootDeniedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		}
 
 		updateWidgetState(GAPPS_REBOOT_STATE);
@@ -544,14 +565,31 @@ public class GappsInstallerHelper {
 		if (RootTools.isAccessGiven()) {
 			updateWidgetState(GAPPS_INSTALLED_STATE);
 
+			try
+            {
+                Shell.runRootCommand(new CommandCapture(0,
+                        "reboot recovery"));
+            } catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (TimeoutException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (RootDeniedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 			// reboot
-			try {
-				((PowerManager) mContext
-						.getSystemService(Context.POWER_SERVICE))
-						.reboot("recovery");
-			} catch (Throwable t) {
-				Log.e(TAG, "Could not access files", t);
-			}
+//			try {
+//				((PowerManager) mContext
+//						.getSystemService(Context.POWER_SERVICE))
+//						.reboot("recovery");
+//			} catch (Throwable t) {
+//				Log.e(TAG, "Could not access files", t);
+//			}
 		} else {
 			Resources resources = mContext.getResources();
 
