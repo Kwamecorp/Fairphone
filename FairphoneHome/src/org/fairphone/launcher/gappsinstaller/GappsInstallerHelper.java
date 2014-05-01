@@ -135,7 +135,9 @@ public class GappsInstallerHelper {
 			updateInstallerState(GAPPS_STATES_INITIAL);
 		}
 		
-		checkGappsAreInstalled();
+		if(!checkGappsAreInstalled()){
+		    updateInstallerState(GAPPS_STATES_INITIAL);
+		}
 	}
 
 	private boolean checkGappsAreInstalled() {
@@ -150,9 +152,11 @@ public class GappsInstallerHelper {
 
 		if (f.exists()) {
 		    updateWidgetState(GAPPS_INSTALLED_STATE);
-	        retVal = true;
+	        return true;
 		}
-        return retVal;
+		
+		updateInstallerState(GAPPS_STATES_INITIAL);
+		return false;
 	}
 
     public void showReinstallAlert() {
