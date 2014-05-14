@@ -708,12 +708,18 @@ public class EdgeSwipeAppMenuHelper implements EdgeSwipeInterceptorViewListener
             label = applicationInfo.getApplicationTitle();
             PackageManager pacManager = getMenuContainerView().getContext().getPackageManager();
             launchIntent = pacManager.getLaunchIntentForPackage(componentName.getPackageName());
-            launchIntent.setComponent(componentName);
+            
+            if(launchIntent != null && componentName != null){
+                launchIntent.setComponent(componentName);
+            } else {
+                // set up the usual edit 
+                icon = mLauncher.getResources().getDrawable(R.drawable.edit_holder);
+                label = mLauncher.getString(R.string.edit);
+            }
         }
 
         // Set the right ComponentName in order to launch Phone
         // or Contacts correctly
-
         return new ItemIcon(menuContent.findViewById(iconId), icon, label, launchIntent);
     }
 
