@@ -854,7 +854,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
             @Override
             public void run() {
                 // We don't enter spring-loaded mode if the drag has been cancelled
-                if (mLauncher.getDragController().isDragging()) {
+                if (mLauncher != null && mLauncher.getDragController() != null && mLauncher.getDragController().isDragging()) {
                     // Dismiss the cling
                     mLauncher.dismissAllAppsCling(null);
 
