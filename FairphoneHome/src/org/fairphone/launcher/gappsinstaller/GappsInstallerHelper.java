@@ -142,7 +142,7 @@ public class GappsInstallerHelper {
 
 	private boolean checkGappsAreInstalled() {
 
-	    boolean retVal = false;
+	    //boolean retVal = false;
 	    
 	    if (mSharedPrefs.getBoolean(GAPPS_REINSTALL_FLAG, false)) {
 	        showReinstallAlert();
